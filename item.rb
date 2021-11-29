@@ -15,14 +15,14 @@ class Item
   def add_genre(genre); end
 
   def add_label(label); end
-  
+
   def move_to_archive
     @archive = true if can_be_archived?
   end
 
   private
-  
+
   def can_be_archived?
-    return true unless published_date < 10 
+    return true unless published_date < 10
   end
 end
