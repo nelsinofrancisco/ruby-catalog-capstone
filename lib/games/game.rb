@@ -14,6 +14,3 @@ class Game < Item
     response && last_played_at > 2
   end
 end
-
-a = Game.new(true, 3, 11)
-puts a.can_be_archived?

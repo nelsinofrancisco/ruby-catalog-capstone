@@ -1,4 +1,5 @@
 # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
+require_relative './lib/games/games_module'
 
 class App
   include GameLogic
@@ -47,7 +48,7 @@ def main
     when 9
       puts 'Implement here you3r method'
     when 10
-      puts 'Implement here 1your method'
+      app.add_game
     when 11
       # app.save_data
       puts 'Thank you for using this great App'
