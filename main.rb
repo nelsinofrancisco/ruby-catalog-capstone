@@ -1,7 +1,11 @@
 # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
 
+class App
+  include GameLogic
+end
+
 def main
-  # app = Name_of_class_with_methods.new
+  app = App.new
   # app.whatever_we_called_the_read_json_methods
   option = nil
   puts 'Welcome To Catalog Of My Things App'
@@ -29,7 +33,7 @@ def main
     when 2
       puts 'Implement here your'
     when 3
-      puts 'Implement here y'
+      app.list_all_games
     when 4
       puts 'Implement he'
     when 5
