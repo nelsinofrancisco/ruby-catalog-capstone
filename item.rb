@@ -14,7 +14,10 @@ class Item
 
   def add_genre(genre); end
 
-  def add_label(label); end
+  def add_label(label, set_label_items_variable: true)
+    @label = label
+    label.add_item(item) if set_label_items_variable
+  end
 
   def move_to_archive
     @archive = true if can_be_archived?
