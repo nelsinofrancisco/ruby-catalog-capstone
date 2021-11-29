@@ -11,10 +11,6 @@ class Game < Item
 
   def can_be_archived?
     response = super
-    if response && last_played_at > 2
-      return true
-    else
-      return false
-    end
+    response && last_played_at > 2
   end
 end
