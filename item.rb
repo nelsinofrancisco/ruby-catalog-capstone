@@ -1,12 +1,13 @@
 class Item
   attr_reader :id, :archived, :author, :genre, :label
 
-  def initialize(archived: false)
+  def initialize(published_date, archived: false)
     @id = Random.rand(1..1000)
     @archived = archived
     @author = nil
     @genre = nil
     @label = nil
+    @published_date = published_date
   end
 
   def add_author(author); end
@@ -15,7 +16,11 @@ class Item
 
   def add_label(label); end
 
-  def can_be_archived?; end
+  def can_be_archived?
+    return true unless published_date < 10 
+  end
 
-  def move_to_archive; end
+  def move_to_archive
+    @archive = true if can_be_archived?
+  end
 end
