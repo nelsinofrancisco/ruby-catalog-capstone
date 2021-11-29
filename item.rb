@@ -1,5 +1,5 @@
 class Item
-  attr_reader :id, :archived, :author, :genre, :label
+  attr_reader :id, :archived, :author, :genre, :label, :published_date
 
   def initialize(published_date, archived: false)
     @id = Random.rand(1..1000)
@@ -12,7 +12,10 @@ class Item
 
   def add_author(author); end
 
-  def add_genre(genre); end
+  def add_genre(genre)
+    @genre = genre
+    genre.items.push(self) unless genre.items.include?(self)
+  end
 
   def add_label(label, set_label_items_variable: true)
     @label = label
