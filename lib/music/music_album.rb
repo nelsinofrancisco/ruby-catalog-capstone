@@ -14,6 +14,3 @@ class MusicAlbum < Item
     false
   end
 end
-
-a = MusicAlbum.new(true, 20)
-puts a.can_be_archived?
