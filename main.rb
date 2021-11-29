@@ -1,3 +1,5 @@
+# rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
+
 def main
   # app = Name_of_class_with_methods.new
   # app.whatever_we_called_the_read_json_methods
@@ -18,30 +20,30 @@ def main
     puts '9 = Add a music album'
     puts '10 = Add a game'
     puts '11 = Exit'
-    
+
     option = gets.chomp.to_i
 
     case option
     when 1
       puts 'Implement here your method'
     when 2
-     puts 'Implement here your method'
+      puts 'Implement here your'
     when 3
-     puts 'Implement here your method'
+      puts 'Implement here y'
     when 4
-     puts 'Implement here your method'
+      puts 'Implement he'
     when 5
-     puts 'Implement here your method'
+      puts 'Impleme'
     when 6
-     puts 'Implement here your method'
+      puts 'Impl'
     when 7
-     puts 'Implement here your method'
+      puts 'Implement here your methsod'
     when 8
-     puts 'Implement here your method'
+      puts 'Implement here your m4ethod'
     when 9
-     puts 'Implement here your method'
+      puts 'Implement here you3r method'
     when 10
-     puts 'Implement here your method'
+      puts 'Implement here 1your method'
     when 11
       # app.save_data
       puts 'Thank you for using this great App'
@@ -53,4 +55,5 @@ def main
   end
 end
 
+# rubocop:enable Metrics/CyclomaticComplexity, Metrics/MethodLength
 main
