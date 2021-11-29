@@ -11,6 +11,6 @@ class Game < Item
   end
 
   def can_be_archived?
-    false unless self.can_be_archived? === true && self.last_played_at < 2
+    false unless archived && last_played_at < 2
   end
 end
