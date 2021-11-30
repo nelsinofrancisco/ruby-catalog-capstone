@@ -3,7 +3,6 @@ require_relative './game'
 require_relative '../items/author'
 
 module GameLogic
-
   def initialize
     @game_list = []
   end
