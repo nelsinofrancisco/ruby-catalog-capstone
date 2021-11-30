@@ -1,9 +1,11 @@
 # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
 require_relative './lib/music/album_logic'
+require_relative './lib/games/games_module'
 
 class App
   attr_reader :albums, :genres
 
+  include GameLogic
   include AlbumLogic
   def initialize
     @albums = []
@@ -13,7 +15,6 @@ end
 
 def main
   app = App.new
-
   option = nil
   puts 'Welcome To Catalog Of My Things App'
 
@@ -41,13 +42,13 @@ def main
     when 2
       app.list_all_albums(app.albums) unless app.check_empty(app.albums, 'Albums', '9')
     when 3
-      puts 'Implement here y'
+      app.list_all_games
     when 4
       app.list_all_genres(app.genres) unless app.check_empty(app.genres, 'Genres', '11')
     when 5
       puts 'Impleme'
     when 6
-      puts 'Impl'
+      app.list_all_authors
     when 7
       puts 'Implement here your methsod'
     when 8
@@ -55,7 +56,7 @@ def main
     when 9
       app.albums.push(app.create_album)
     when 10
-      puts 'Implement here 1your method'
+      app.add_game
     when 11
       app.genres.push(app.create_genre)
     when 12
