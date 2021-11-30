@@ -3,19 +3,22 @@ require_relative './lib/music/album_logic'
 require_relative './lib/games/games_module'
 
 class App
-  attr_reader :albums, :genres
+  attr_reader :albums, :genres, :game_list
 
   include GameLogic
   include AlbumLogic
   def initialize
     @albums = []
     @genres = []
+    @game_list = []
+    @authors_list =[]
   end
 end
 
 def main
   app = App.new
   option = nil
+  app.get_games_data
   puts 'Welcome To Catalog Of My Things App'
 
   while option != '11'
@@ -61,6 +64,7 @@ def main
       app.genres.push(app.create_genre)
     when 12
       # app.save_data
+      app.save_games_data
       puts 'Thank you for using this great App'
       break
     else
