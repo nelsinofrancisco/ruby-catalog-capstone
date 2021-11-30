@@ -1,19 +1,32 @@
+require_relative './game'
+require_relative '../items/author'
+
 module GameLogic
+  attr_reader :items
+
   def add_game
     @game_list = []
-    print 'Name: '
-    name = gets.chomp
-    print 'Age: '
-    age = gets.chomp
-    print 'Has parent permission? [Y/N]: '
-    parent_permission = true if gets.chomp.capitalize == 'Y'
-    new_person = Student.new(classroom, name, age, parent_permission)
-    @people.push(new_person)
-    puts 'Person created succesfully'
+    print 'Title: '
+    title = gets.chomp
+    print 'Is a multiplayer game? [Y/N]: '
+    multiplayer = gets.chomp.capitalize == 'Y'
+    print 'For how many years you dont play this game?: '
+    last_played_at = gets.chomp
+    print 'Please state how many years ago it was published: '
+    published_date = gets.chomp
+    new_game = Game.new(title, multiplayer, last_played_at, published_date)
+    @game_list.push(new_game)
+    puts 'Game created succesfully'
     puts ''
   end
 
   def list_all_games
-    puts @game_list
+    @game_list.each do |game|
+      puts "Title: \"#{game.title}\", Multiplayer: #{game.multiplayer}, Last Time Played: #{game.last_played_at} years ago, Published #{game.published_date} years ago"
+    end
+  end
+
+  def list_all_authors
+    puts 'There are no authors in the list yet, please add one first'
   end
 end

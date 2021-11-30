@@ -40,7 +40,7 @@ def main
     when 5
       puts 'Impleme'
     when 6
-      puts 'Impl'
+      app.list_all_authors
     when 7
       puts 'Implement here your methsod'
     when 8
