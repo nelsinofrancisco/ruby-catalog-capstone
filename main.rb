@@ -3,6 +3,7 @@ require_relative './lib/music/album_logic'
 
 class App
   attr_reader :albums, :genres
+
   include AlbumLogic
   def initialize
     @albums = []

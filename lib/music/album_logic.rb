@@ -18,15 +18,16 @@ module AlbumLogic
   end
 
   def create_album
+    input = nil
     on_spotify = nil
-    while on_spotify != 'y' && on_spotify != 'n'
+    while input != 'y' && input != 'n'
       print 'On Spotify? [Y/N]: '
-      on_spotify = gets.chomp.downcase
-      case on_spotify
+      input = gets.chomp.downcase
+      case input
       when 'y'
-        permission = true
+        on_spotify = true
       when 'n'
-        permission = false
+        on_spotify = false
       else
         puts 'Wrong input! Please try type Y/y for yes or N/n for no:'
       end
@@ -36,7 +37,6 @@ module AlbumLogic
     MusicAlbum.new(on_spotify, published_date)
   end
 
-  
   def create_genre
     print 'Name: '
     genre = gets.chomp
