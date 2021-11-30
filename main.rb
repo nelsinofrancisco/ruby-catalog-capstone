@@ -1,12 +1,10 @@
-# rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
 require_relative './lib/music/album_logic'
 require_relative './lib/games/games_module'
 
 class App
   attr_reader :albums, :genres
 
-  include GameLogic
-  include AlbumLogic
+  include AlbumLogic, GameLogic
   def initialize
     @albums = []
     @genres = []
