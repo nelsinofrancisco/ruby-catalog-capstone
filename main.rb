@@ -35,7 +35,7 @@ end
 def main
   app = App.new
   option = nil
-  app.get_games_data
+  app.read_games_data
   puts 'Welcome To Catalog Of My Things App'
 
   while option != '11'
