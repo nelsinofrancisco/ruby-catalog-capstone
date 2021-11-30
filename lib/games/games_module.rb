@@ -3,10 +3,12 @@ require_relative './game'
 require_relative '../items/author'
 
 module GameLogic
-  attr_reader :items
+
+  def initialize
+    @game_list = []
+  end
 
   def add_game
-    @game_list = []
     print 'Title: '
     title = gets.chomp
     print 'Is a multiplayer game? [Y/N]: '
