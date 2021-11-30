@@ -1,4 +1,4 @@
-# rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
+# rubocop:disable Layout/LineLength
 require_relative './game'
 require_relative '../items/author'
 
@@ -32,4 +32,4 @@ module GameLogic
   end
 end
 
-# rubocop:enable Metrics/CyclomaticComplexity, Metrics/MethodLength
+# rubocop:enable Layout/LineLength
