@@ -1,10 +1,11 @@
-require_relative '../item'
+require_relative './.././../item'
 
 class Game < Item
-  attr_accessor :multiplayer, :last_played_at, :archived, :published_date
+  attr_accessor :multiplayer, :last_played_at, :archived, :published_date, :title
 
-  def initialize(multiplayer, last_played_at, published_date, archived: false)
-    super(published_date, archived)
+  def initialize(title, multiplayer, last_played_at, published_date)
+    super(published_date)
+    @title = title
     @multiplayer = multiplayer
     @last_played_at = last_played_at
   end
