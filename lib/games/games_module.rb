@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
 require_relative './game'
 require_relative '../items/author'
 
@@ -22,7 +23,7 @@ module GameLogic
 
   def list_all_games
     @game_list.each do |game|
-      puts "Title: \"#{game.title}\", Multiplayer: #{game.multiplayer}, Last Time Played: #{game.last_played_at} years ago, Published #{game.published_date} years ago"
+      puts "Title: \"#{game.title}\", Multiplayer: #{game.multiplayer}, Last Time Played:#{game.last_played_at} years ago, Published #{game.published_date} years ago"
     end
   end
 
@@ -30,3 +31,5 @@ module GameLogic
     puts 'There are no authors in the list yet, please add one first'
   end
 end
+
+# rubocop:enable Metrics/CyclomaticComplexity, Metrics/MethodLength
