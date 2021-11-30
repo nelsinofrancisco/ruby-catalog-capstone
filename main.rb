@@ -1,8 +1,18 @@
 # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
+require_relative './lib/music/album_logic'
+
+class App
+  attr_reader :albums, :genres
+  include AlbumLogic
+  def initialize
+    @albums = []
+    @genres = []
+  end
+end
 
 def main
-  # app = Name_of_class_with_methods.new
-  # app.whatever_we_called_the_read_json_methods
+  app = App.new
+
   option = nil
   puts 'Welcome To Catalog Of My Things App'
 
@@ -19,7 +29,8 @@ def main
     puts '8 = Add a book'
     puts '9 = Add a music album'
     puts '10 = Add a game'
-    puts '11 = Exit'
+    puts '11 = Add a genre'
+    puts '12 = Exit'
 
     option = gets.chomp.to_i
 
@@ -27,11 +38,11 @@ def main
     when 1
       puts 'Implement here your method'
     when 2
-      puts 'Implement here your'
+      app.list_all_albums(app.albums) unless app.check_empty(app.albums, 'Albums', '9')
     when 3
       puts 'Implement here y'
     when 4
-      puts 'Implement he'
+      app.list_all_genres(app.genres) unless app.check_empty(app.genres, 'Genres', '11')
     when 5
       puts 'Impleme'
     when 6
@@ -41,10 +52,12 @@ def main
     when 8
       puts 'Implement here your m4ethod'
     when 9
-      puts 'Implement here you3r method'
+      app.albums.push(app.create_album)
     when 10
       puts 'Implement here 1your method'
     when 11
+      app.genres.push(app.create_genre)
+    when 12
       # app.save_data
       puts 'Thank you for using this great App'
       break
