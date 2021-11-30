@@ -6,7 +6,9 @@ require_relative './lib/games/games_module'
 class App
   attr_reader :albums, :genres, :books, :labels
 
-  include BookCollection, AlbumLogic, GameLogic
+  include GameLogic
+  include AlbumLogic
+  include BookCollection
   def initialize
     instantiate_commom_variables
   end
@@ -37,7 +39,7 @@ def main
 
   while option != '11'
     menu
-    
+
     option = gets.chomp.to_i
 
     case option
@@ -64,7 +66,7 @@ def main
     when 11
       app.add_a_label
     when 12
-       app.genres.push(app.create_genre)
+      app.genres.push(app.create_genre)
     when 13
       # app.save_data
       puts "\nSaving and exiting..."
