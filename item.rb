@@ -10,7 +10,10 @@ class Item
     @published_date = published_date
   end
 
-  def add_author(author); end
+  def add_author(author)
+    @author = author
+    author.add_item(self)
+  end
 
   def add_genre(genre)
     @genre = genre

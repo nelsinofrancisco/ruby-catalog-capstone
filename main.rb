@@ -1,9 +1,12 @@
 require_relative './lib/books/book_collection'
 # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
+require_relative './lib/music/album_logic'
+require_relative './lib/games/games_module'
 
 class App
-  include BookCollection
+  attr_reader :albums, :genres, :books, :labels
 
+  include BookCollection, AlbumLogic, GameLogic
   def initialize
     instantiate_commom_variables
   end
@@ -22,45 +25,47 @@ def menu
   puts '9 = Add a music album'
   puts '10 = Add a game'
   puts '11 = Add a Label'
-  puts '12 = Exit'
+  puts '12 - Add a Genre'
+  puts '13 = Exit'
   print 'Type your option: '
 end
 
 def main
-  # app = Name_of_class_with_methods.new
   app = App.new
-  # app.whatever_we_called_the_read_json_methods
   option = nil
   puts 'Welcome To Catalog Of My Things App'
 
   while option != '11'
     menu
+    
     option = gets.chomp.to_i
 
     case option
     when 1
       app.list_all_books
     when 2
-      puts 'Implement here your'
+      app.list_all_albums(app.albums) unless app.check_empty(app.albums, 'Albums', '9')
     when 3
-      puts 'Implement here y'
+      app.list_all_games
     when 4
-      puts 'Implement he'
+      app.list_all_genres(app.genres) unless app.check_empty(app.genres, 'Genres', '11')
     when 5
       app.list_all_labels
     when 6
-      puts 'Impl'
+      app.list_all_authors
     when 7
       puts 'Implement here your methsod'
     when 8
       app.add_a_book
     when 9
-      puts 'Implement here you3r method'
+      app.albums.push(app.create_album)
     when 10
-      puts 'Implement here 1your method'
+      app.add_game
     when 11
       app.add_a_label
     when 12
+       app.genres.push(app.create_genre)
+    when 13
       # app.save_data
       puts "\nSaving and exiting..."
       break
