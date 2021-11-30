@@ -22,7 +22,7 @@ class Item
 
   def add_label(label, set_label_items_variable: true)
     @label = label
-    label.add_item(item) if set_label_items_variable
+    label.add_item(self) if set_label_items_variable
   end
 
   def move_to_archive
