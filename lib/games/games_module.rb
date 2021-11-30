@@ -23,32 +23,30 @@ module GameLogic
 
   def list_all_games
     @game_list = JSON.parse(File.read('./lib/games/json_data/games.json'))
-    if !@game_list.empty?
+    if @game_list.empty?
+      puts 'There are no games in the list yet, please add one first'
+    else
       @game_list.each do |game|
         puts "Title: #{game['title']}, Multiplayer: #{game['multiplayer']}, Last Time Played:#{game['last_played_at']} years ago, Published #{game['published_date']} years ago"
       end
-    else
-      puts 'There are no games in the list yet, please add one first'
     end
   end
 
   def list_all_authors
     @authors_list = JSON.parse(File.read('./lib/games/json_data/authors.json'))
-    if !@authors_list.empty?
+    if @authors_list.empty?
+      puts 'There are no games in the list yet, please add one first'
+    else
       @authors_list.each do |author|
         puts "Title: #{author['first_name']}, Multiplayer: #{author['last_name']}"
       end
-    else
-      puts 'There are no games in the list yet, please add one first'
     end
   end
 
   def read_games_data
-    unless File.exist?('./lib/games/json_data/games.json')
+    if File.exist?('./lib/games/json_data/games.json')
       File.open('./lib/games/json_data/games.json', 'a') { |f| f.write(JSON.generate([])) }
-    end
-
-    unless File.exist?('./lib/games/json_data/authors.json')
+    elsif File.exist?('./lib/games/json_data/authors.json')
       File.open('./lib/games/json_data/authors.json', 'a') { |f| f.write(JSON.generate([])) }
     end
   end
