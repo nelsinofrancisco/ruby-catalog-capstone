@@ -63,7 +63,23 @@ module PreserveData
     file_data = file.read if file
     albums_data = JSON.parse(file_data)
     albums_data.each do |data|
-      @albums.push(MusicAlbum.from_json(JSON.parse(data)))
+      item = MusicAlbum.from_json(JSON.parse(data))
+      @albums << item
+      @items << item
+    end
+  end
+
+  def load_books
+    books_path = './lib/helpers/json/books.json'
+    return [] unless File.exist?(books_path)
+
+    file = File.open(books_path)
+    file_data = file.read if file
+    books_data = JSON.parse(file_data)
+    books_data.each do |data|
+      item = Book.from_json(JSON.parse(data))
+      @books << item
+      @items << item
     end
   end
 
