@@ -1,8 +1,7 @@
 require 'fileutils'
 require 'json'
 
-module PreserveData 
-  
+module PreserveData
   def save_collections
     save_albums
     save_genres
@@ -16,15 +15,15 @@ module PreserveData
     load_labels
     load_genres
   end
-  
+
   private
-  
+
   def save_books
     base_folder = './lib/helpers/json'
     books_path = './lib/helpers/json/books.json'
 
     FileUtils.mkdir_p(base_folder) unless Dir.exist?(base_folder)
-    json_books = @books.map { |book| book.to_json}
+    json_books = @books.map(&:to_json)
     File.write(books_path, JSON.generate(json_books))
   end
 
@@ -33,7 +32,7 @@ module PreserveData
     labels_path = './lib/helpers/json/labels.json'
 
     FileUtils.mkdir_p(base_folder) unless Dir.exist?(base_folder)
-    json_labels = @labels.map { |label| label.to_json }
+    json_labels = @labels.map(&:to_json)
     File.write(labels_path, JSON.generate(json_labels))
   end
 
@@ -42,7 +41,7 @@ module PreserveData
     albums_path = './lib/helpers/json/albums.json'
 
     FileUtils.mkdir_p(base_folder) unless Dir.exist?(base_folder)
-    json_albums = @albums.map { |album| album.to_json}
+    json_albums = @albums.map(&:to_json)
     File.write(albums_path, JSON.generate(json_albums))
   end
 
@@ -51,7 +50,7 @@ module PreserveData
     genres_path = './lib/helpers/json/genres.json'
 
     FileUtils.mkdir_p(base_folder) unless Dir.exist?(base_folder)
-    json_genres = @genres.map { |genre| genre.to_json}
+    json_genres = @genres.map(&:to_json)
     File.write(genres_path, JSON.generate(json_genres))
   end
 
@@ -113,8 +112,6 @@ module PreserveData
       @labels << new_label
     end
   end
-
-  private 
 
   def load_relations(relational_class, array)
     array.each do |item|

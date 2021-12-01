@@ -29,17 +29,17 @@ class Item
     @archive = true if can_be_archived?
   end
 
-  def to_json
-    JSON.dump ({
-      id: @id,
-      archived: @archived,
-      published_date: @published_date
-    })
+  def to_json(*_args)
+    JSON.dump({
+                id: @id,
+                archived: @archived,
+                published_date: @published_date
+              })
   end
 
   def self.from_json(data)
-    state = JSON.load data
-    self.new(state['published_date'], state['archived'])
+    state = JSON.parse data
+    new(state['published_date'], state['archived'])
   end
 
   private

@@ -12,7 +12,7 @@ module StorageHandler
     @authors = []
     @items = {}
   end
-  
+
   private
 
   def select_item_for(class_name)

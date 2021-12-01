@@ -9,18 +9,18 @@ class Book < Item
     @cover_state = cover_state
   end
 
-  def to_json
-    JSON.dump ({
-      id: @id,
-      archived: @archived,
-      published_date: @published_date,
-      publisher: @publisher,
-      cover_state: @cover_state
-    })
+  def to_json(*_args)
+    JSON.dump({
+                id: @id,
+                archived: @archived,
+                published_date: @published_date,
+                publisher: @publisher,
+                cover_state: @cover_state
+              })
   end
 
   def self.from_json(data)
-    self.new(data['published_date'], data['publisher'], data['cover_state'], archived: data['archived'])
+    new(data['published_date'], data['publisher'], data['cover_state'], archived: data['archived'])
   end
 
   private

@@ -16,15 +16,15 @@ class Label
     item.add_label(self, validation: false) unless item.label
   end
 
-  def to_json
-    JSON.dump ({
-      title: @title,
-      color: @color,
-      items: @items.map { |item| item.to_json},
-    })
+  def to_json(*_args)
+    JSON.dump({
+                title: @title,
+                color: @color,
+                items: @items.map(&:to_json)
+              })
   end
 
   def self.from_json(data)
-    self.new(data['title'], data['color'])
+    new(data['title'], data['color'])
   end
 end
