@@ -43,7 +43,7 @@ module BookCollection
     puts 'Item Selected.'
     previous_label = nil
 
-    unless @label.empty?
+    unless @labels.empty?
       print 'Do you want to add this Item to a existing Label? [Y/N]: '
       previous_label = true if gets.chomp.capitalize == 'Y'
     end
@@ -52,8 +52,8 @@ module BookCollection
       option_id = select_label_from_list
 
       if option_id
-        item.add_label(@label[option_id])
-        puts "Item added to Label with Id: #{@label[option_id].id}\n\n"
+        item.add_label(@labels[option_id])
+        puts "Item added to Label with Id: #{@labels[option_id].id}\n\n"
       end
     else
       create_new_label(item)
@@ -69,8 +69,8 @@ module BookCollection
     end
     print 'Select your option: '
     option_id = gets.chomp.to_i
-    if option_id.abs >= @label.length
-      puts "Item could not be added to Label with Id: #{@label[option_id].id}\n\n"
+    if option_id.abs >= @labels.length
+      puts "Item could not be added to Label with Id: #{@labels[option_id].id}\n\n"
       return false
     end
     option_id
