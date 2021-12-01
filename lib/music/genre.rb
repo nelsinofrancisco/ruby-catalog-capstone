@@ -16,7 +16,7 @@ class Genre
   def to_json(*_args)
     JSON.dump({
                 name: @name,
-                items: @items.map { |item| item.to_json }
+                items: @items.map(&:to_json)
               })
   end
 

@@ -38,8 +38,45 @@ module BookCollection
 
   def add_a_label
     item = select_item_for('Label')
-    puts 'Item Selected.'
+    return unless item
 
+    puts 'Item Selected.'
+    previous_label = nil
+
+    unless @labels.empty?
+      print 'Do you want to add this Item to a existing Label? [Y/N]: '
+      previous_label = true if gets.chomp.capitalize == 'Y'
+    end
+
+    if previous_label
+      option_id = select_label_from_list
+
+      if option_id
+        item.add_label(@labels[option_id])
+        puts "Item added to Label with Id: #{@labels[option_id].id}\n\n"
+      end
+    else
+      create_new_label(item)
+    end
+  end
+
+  private
+
+  def select_label_from_list
+    puts 'Select a Label from this option List: '
+    @labels.each_with_index do |label, idx|
+      puts "[#{idx}] - Title: #{label.title}, Author: #{label.color}"
+    end
+    print 'Select your option: '
+    option_id = gets.chomp.to_i
+    if option_id.abs >= @labels.length
+      puts "Item could not be added to Label with Id: #{@labels[option_id].id}\n\n"
+      return false
+    end
+    option_id
+  end
+
+  def create_new_label(item)
     print 'Insert Label Title: '
     title = gets.chomp
     print 'Insert Label Color: '
@@ -48,7 +85,6 @@ module BookCollection
     new_label = Label.new(title, color)
     @labels << new_label
     item.add_label(new_label)
-
     puts "Label created successfully\n\n"
   end
 end
