@@ -6,7 +6,7 @@ module VariablesInterface
     @game_list = []
     @genres = []
     @labels = []
-    @authors = []
+    @authors_list = []
   end
 
   private
