@@ -4,20 +4,20 @@ class MusicAlbum < Item
   attr_accessor :on_spotify, :published_date
 
   def initialize(on_spotify, published_date, archived: false)
-    super(published_date)
+    super(published_date, archived: archived)
     @on_spotify = on_spotify
   end
 
-  def to_json
-    JSON.dump ({
-      on_spotify: @on_spotify,
-      published_date: @published_date,
-      archived: @archived,
-    })
+  def to_json(*_args)
+    JSON.dump({
+                on_spotify: @on_spotify,
+                published_date: @published_date,
+                archived: @archived
+              })
   end
 
   def self.from_json(data)
-    self.new(data['on_spotify'], data['published_date'], archived: data['archived'])
+    new(data['on_spotify'], data['published_date'], archived: data['archived'])
   end
 
   private

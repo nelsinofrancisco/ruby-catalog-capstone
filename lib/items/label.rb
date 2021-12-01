@@ -16,16 +16,11 @@ class Label
     item.add_label(self, false) unless item.label
   end
 
-  def to_json
-    JSON.dump ({
-      title: @title,
-      color: @color,
-      items: @items,
-    })
-  end
-
-  def self.from_json(data)
-    state = JSON.load data
-    self.new(state['title'], state['color'])
+  def to_json(*_args)
+    JSON.dump({
+                title: @title,
+                color: @color,
+                items: @items
+              })
   end
 end

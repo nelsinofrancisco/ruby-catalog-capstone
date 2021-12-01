@@ -1,28 +1,25 @@
 require 'fileutils'
 require 'json'
 
-module PreserveData 
-  
+module PreserveData
   def save_collections
     save_albums
     save_genres
-    save_books
-    save_labels
   end
 
   def load_collections
     load_albums
     load_genres
   end
-  
+
   private
-  
+
   def save_albums
     base_folder = './lib/helpers/json'
     albums_path = './lib/helpers/json/albums.json'
 
     FileUtils.mkdir_p(base_folder) unless Dir.exist?(base_folder)
-    json_albums = @albums.map { |album| album.to_json}
+    json_albums = @albums.map { |album| album.to_json }
     File.write(albums_path, JSON.generate(json_albums))
   end
 
@@ -31,7 +28,7 @@ module PreserveData
     genres_path = './lib/helpers/json/genres.json'
 
     FileUtils.mkdir_p(base_folder) unless Dir.exist?(base_folder)
-    json_genres = @genres.map { |genre| genre.to_json}
+    json_genres = @genres.map { |genre| genre.to_json }
     File.write(genres_path, JSON.generate(json_genres))
   end
 

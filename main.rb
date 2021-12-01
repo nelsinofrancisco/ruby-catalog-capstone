@@ -17,7 +17,6 @@ class App
   end
 
   def save_data
-
     # save_books
   end
 end
