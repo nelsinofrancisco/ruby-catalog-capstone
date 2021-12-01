@@ -9,12 +9,11 @@ class MusicAlbum < Item
   end
 
   def to_json(*_args)
-    JSON.dump(
-      id: @id,
-      on_spotify: @on_spotify,
-      published_date: @published_date,
-      archived: @archived
-    )
+    JSON.dump({
+                on_spotify: @on_spotify,
+                published_date: @published_date,
+                archived: @archived
+              })
   end
 
   def self.from_json(data)
