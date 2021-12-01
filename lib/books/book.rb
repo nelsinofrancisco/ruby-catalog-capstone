@@ -19,8 +19,7 @@ class Book < Item
   end
 
   def self.from_json(data)
-    state = JSON.load data
-    self.new(state['published_date'], state['publisher'], state['cover_state'], state['archived'])
+    self.new(data['published_date'], data['publisher'], data['cover_state'], archived: data['archived'])
   end
 
   private
