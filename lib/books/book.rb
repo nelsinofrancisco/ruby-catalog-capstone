@@ -9,6 +9,20 @@ class Book < Item
     @cover_state = cover_state
   end
 
+  def to_json
+    JSON.dump ({
+      archived: @archived,
+      published_date: @published_date,
+      publisher: @publisher,
+      cover_state: @cover_state
+    })
+  end
+
+  def self.from_json(data)
+    state = JSON.load data
+    self.new(state['published_date'], state['publisher'], state['cover_state'], state['archived'])
+  end
+
   private
 
   def can_be_archived?
