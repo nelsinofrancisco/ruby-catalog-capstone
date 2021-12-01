@@ -13,7 +13,7 @@ class Label
 
   def add_item(item)
     @items << item
-    item.add_label(self, false) unless item.label
+    item.add_label(self, validation: false) unless item.label
   end
 
   def to_json
@@ -25,7 +25,6 @@ class Label
   end
 
   def self.from_json(data)
-    state = JSON.load data
-    self.new(state['title'], state['color'])
+    self.new(data['title'], data['color'])
   end
 end
