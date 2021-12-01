@@ -12,11 +12,31 @@ module PreserveData
 
   def load_collections
     load_albums
+    load_books
+    load_labels
     load_genres
   end
   
   private
   
+  def save_books
+    base_folder = './lib/helpers/json'
+    books_path = './lib/helpers/json/books.json'
+
+    FileUtils.mkdir_p(base_folder) unless Dir.exist?(base_folder)
+    json_books = @books.map { |book| book.to_json}
+    File.write(books_path, JSON.generate(json_books))
+  end
+
+  def save_labels
+    base_folder = './lib/helpers/json'
+    labels_path = './lib/helpers/json/labels.json'
+
+    FileUtils.mkdir_p(base_folder) unless Dir.exist?(base_folder)
+    json_labels = @labels.map { |label| label.to_json }
+    File.write(labels_path, JSON.generate(json_labels))
+  end
+
   def save_albums
     base_folder = './lib/helpers/json'
     albums_path = './lib/helpers/json/albums.json'
@@ -56,6 +76,18 @@ module PreserveData
     genres_data = JSON.parse(file_data)
     genres_data.each do |data|
       @genres.push(Genre.from_json(JSON.parse(data)))
+    end
+  end
+
+  def load_labels
+    labels_path = './lib/helpers/json/labels.json'
+    return [] unless File.exist?(labels_path)
+
+    file = File.open(labels_path)
+    file_data = file.read if file
+    labels_data = JSON.parse(file_data)
+    labels_data.each do |data|
+      @labels.push(Labels.from_json(JSON.parse(data)))
     end
   end
 end
