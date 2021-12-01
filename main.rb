@@ -12,6 +12,10 @@ class App
   def initialize
     instantiate_commom_variables
   end
+
+  def save_data
+    save_books
+  end
 end
 
 def menu
@@ -68,7 +72,7 @@ def main
     when 12
       app.genres.push(app.create_genre)
     when 13
-      # app.save_data
+      app.save_data
       puts "\nSaving and exiting..."
       break
     else
