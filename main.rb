@@ -15,11 +15,6 @@ class App
   def initialize
     instantiate_common_variables
   end
-
-  def save_data
-
-    # save_books
-  end
 end
 
 def menu
