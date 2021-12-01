@@ -1,6 +1,8 @@
 require_relative 'book'
 require_relative './../items/label'
 require_relative './../helpers/variables_interface'
+require 'fileutils'
+require 'json'
 
 module BookCollection
   include VariablesInterface
@@ -53,5 +55,44 @@ module BookCollection
     item.add_label(new_label)
 
     puts "Label created successfully\n\n"
+  end
+
+  def save_book_collection
+    save_books
+    save_labels
+  end
+
+  def load_book_collection
+    #load_books
+    #load_labels
+  end
+
+  private
+
+  def save_books
+    base_folder = './lib/books/json_data/'
+    books_path = './lib/games/json_data/books.json'
+    labels_path = './lib/games/json_data/labels.json'
+
+    FileUtils.mkdir_p(base_folder) unless Dir.exist?(base_folder)
+    json_books = @books.map { |book| book.to_json}
+    File.write(books_path, JSON.generate(json_books))
+  end
+
+  def save_labels
+    base_folder = './lib/books/json_data/'
+    labels_path = './lib/games/json_data/labels.json'
+
+    FileUtils.mkdir_p(base_folder) unless Dir.exist?(base_folder)
+    json_labels = @labels.map { |label| label.to_json }
+    File.write(labels_path, JSON.generate(json_labels))
+  end
+
+  def load_books
+
+  end
+
+  def load_labels
+
   end
 end
