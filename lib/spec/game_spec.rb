@@ -1,3 +1,4 @@
+# rubocop:disable Layout/LineLength
 require './lib/games/game'
 
 describe Game do
@@ -15,8 +16,7 @@ describe Game do
 
   describe 'Testing the Game class methods' do
     context 'When can_be_archived method is called' do
-      it "Should return true if parent's method returns true AND"\
-        "if last_played_at is older than 2 years, otherwise returns false" do
+      it "Should return true if parent's method returns true AND if last_played_at is older than 2 years, otherwise returns false" do
         new_game1 = Game.new('test', true, 3, 5)
         expect(new_game1.can_be_archived?).to eq false
 
@@ -29,3 +29,4 @@ describe Game do
     end
   end
 end
+# rubocop:enable Layout/LineLength
