@@ -10,7 +10,7 @@ module StorageHandler
     @genres = []
     @labels = []
     @authors = []
-    @items = []
+    @items = {}
   end
   
   private
