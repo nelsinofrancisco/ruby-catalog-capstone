@@ -20,13 +20,25 @@ class Item
     genre.items.push(self) unless genre.items.include?(self)
   end
 
-  def add_label(label, set_label_items_variable: true)
+  def add_label(label, validation: true)
     @label = label
-    label.add_item(self) if set_label_items_variable
+    label.add_item(self) if validation
   end
 
   def move_to_archive
-    @archive = true if can_be_archived?
+    @archived = true if can_be_archived?
+  end
+
+  def to_json(*_args)
+    JSON.dump({
+                id: @id,
+                archived: @archived,
+                published_date: @published_date
+              })
+  end
+
+  def self.from_json(data)
+    new(data['published_date'], data['archived'])
   end
 
   private

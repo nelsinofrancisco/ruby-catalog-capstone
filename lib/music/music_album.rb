@@ -10,6 +10,7 @@ class MusicAlbum < Item
 
   def to_json(*_args)
     JSON.dump({
+                id: @id,
                 on_spotify: @on_spotify,
                 published_date: @published_date,
                 archived: @archived
@@ -19,8 +20,6 @@ class MusicAlbum < Item
   def self.from_json(data)
     new(data['on_spotify'], data['published_date'], archived: data['archived'])
   end
-
-  private
 
   def can_be_archived?
     return true if on_spotify && super

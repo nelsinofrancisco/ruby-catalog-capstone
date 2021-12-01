@@ -23,7 +23,7 @@ CREATE TABLE items (
   author varchar(30),
   source varchar(30),
   label varchar(30),
-  publish_date int,
+  publish_date date,
   archived boolean,
   author_id int,
   game_id int,
