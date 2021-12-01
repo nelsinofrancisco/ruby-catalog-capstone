@@ -1,6 +1,9 @@
-module VariablesInterface
+require_relative './preserve_data'
+
+module StorageHandler
+  include PreserveData
   # This method must be run in initialize method of the class that it's including it
-  def instantiate_commom_variables
+  def instantiate_common_variables
     @albums = []
     @books = []
     @game_list = []
