@@ -63,9 +63,10 @@ module PreserveData
     file_data = file.read if file
     albums_data = JSON.parse(file_data)
     albums_data.each do |data|
-      item = MusicAlbum.from_json(JSON.parse(data))
+      json_data = JSON.parse(data)
+      item = MusicAlbum.from_json(json_data)
       @albums << item
-      @items << item
+      @items[json_data['id']] = item
     end
   end
 
@@ -77,9 +78,10 @@ module PreserveData
     file_data = file.read if file
     books_data = JSON.parse(file_data)
     books_data.each do |data|
-      item = Book.from_json(JSON.parse(data))
+      json_data = JSON.parse(data)
+      item = Book.from_json(json_data)
       @books << item
-      @items << item
+      @items[json_data['id']] = item
     end
   end
 
@@ -102,8 +104,23 @@ module PreserveData
     file = File.open(labels_path)
     file_data = file.read if file
     labels_data = JSON.parse(file_data)
+
     labels_data.each do |data|
-      @labels.push(Labels.from_json(JSON.parse(data)))
+      json_label = JSON.parse(data)
+      item_array = json_label['items']
+      new_label = Label.from_json(json_label)
+      load_relations(new_label, item_array)
+      @labels << new_label
+    end
+  end
+
+  private 
+
+  def load_relations(relational_class, array)
+    array.each do |item|
+      item_id = JSON.parse(item)['id']
+      item = @items[item_id]
+      relational_class.add_item(item)
     end
   end
 end
