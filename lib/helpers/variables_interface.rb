@@ -54,10 +54,10 @@ module VariablesInterface
       general_item = "[#{index}] - Class: #{item.class} Id: #{item.id}, Published at: #{item.published_date} "
       book_chr = "Characteristics: #{item.publisher}, #{item.cover_state}"
       general_item + book_chr
-    # when 'Game'
-    #   general_item = "[#{index}] - Class: #{item.class} Id: #{item.id}, Published at: #{item.published_date} "
-    #   game_chr = "Characteristics: #{item.multiplayer}, #{item.last_played_at}"
-    #   general_item + game_chr
+    when 'Game'
+      general_item = "[#{index}] - Class: #{item.class} Id: #{item.id}, Published at: #{item.published_date} "
+      game_chr = "Characteristics: #{item.multiplayer}, #{item.last_played_at}"
+      general_item + game_chr
     when 'MusicAlbum'
       general_item = "[#{index}] - Class: #{item.class} Id: #{item.id}, Published at: #{item.published_date} "
       album_chr = "Characteristics: #{item.on_spotify}"
