@@ -22,7 +22,7 @@ module GameLogic
   end
 
   def list_all_games
-    @game_list = JSON.parse(File.read('./lib/games/json_data/games.json'))
+    @game_list = JSON.parse(File.read('./lib/games/json/games.json'))
     if @game_list.empty?
       puts 'There are no games in the list yet, please add one first'
     else
@@ -33,7 +33,7 @@ module GameLogic
   end
 
   def list_all_authors
-    @authors_list = JSON.parse(File.read('./lib/games/json_data/authors.json'))
+    @authors_list = JSON.parse(File.read('./lib/games/json/authors.json'))
     if @authors_list.empty?
       puts 'There are no games in the list yet, please add one first'
     else
@@ -44,16 +44,16 @@ module GameLogic
   end
 
   def read_games_data
-    if File.exist?('./lib/games/json_data/games.json')
-      File.open('./lib/games/json_data/games.json', 'a') { |f| f.write(JSON.generate([])) }
-    elsif File.exist?('./lib/games/json_data/authors.json')
-      File.open('./lib/games/json_data/authors.json', 'a') { |f| f.write(JSON.generate([])) }
+    if File.exist?('./lib/games/json/games.json')
+      File.open('./lib/games/json/games.json', 'a') { |f| f.write(JSON.generate([])) }
+    elsif File.exist?('./lib/games/json/authors.json')
+      File.open('./lib/games/json/authors.json', 'a') { |f| f.write(JSON.generate([])) }
     end
   end
 
   def save_games_data
-    File.open('./lib/games/json_data/games.json', 'w+') { |f| f.write(JSON.generate(game_list)) }
-    File.open('./lib/games/json_data/authors.json', 'w+') { |f| f.write(JSON.generate(@authors_list)) }
+    File.open('./lib/games/json/games.json', 'w+') { |f| f.write(JSON.generate(game_list)) }
+    File.open('./lib/games/json/authors.json', 'w+') { |f| f.write(JSON.generate(@authors_list)) }
   end
 end
 
