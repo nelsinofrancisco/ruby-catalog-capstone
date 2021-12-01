@@ -18,7 +18,6 @@ module PreserveData
 
   private
 
-<<<<<<< HEAD
   def save_books
     base_folder = './lib/helpers/json'
     books_path = './lib/helpers/json/books.json'
@@ -37,29 +36,19 @@ module PreserveData
     File.write(labels_path, JSON.generate(json_labels))
   end
 
-=======
->>>>>>> 9fb57cedb7253a48fd8d19edd7e474b490600c78
   def save_albums
     albums_path = './lib/helpers/json/albums.json'
-<<<<<<< HEAD
 
     FileUtils.mkdir_p(base_folder) unless Dir.exist?(base_folder)
     json_albums = @albums.map(&:to_json)
-=======
-    json_albums = @albums.map { |album| album.to_json }
->>>>>>> 9fb57cedb7253a48fd8d19edd7e474b490600c78
     File.write(albums_path, JSON.generate(json_albums))
   end
 
   def save_genres
     genres_path = './lib/helpers/json/genres.json'
-<<<<<<< HEAD
 
     FileUtils.mkdir_p(base_folder) unless Dir.exist?(base_folder)
     json_genres = @genres.map(&:to_json)
-=======
-    json_genres = @genres.map { |genre| genre.to_json }
->>>>>>> 9fb57cedb7253a48fd8d19edd7e474b490600c78
     File.write(genres_path, JSON.generate(json_genres))
   end
 
