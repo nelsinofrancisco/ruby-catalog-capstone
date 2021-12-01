@@ -21,8 +21,6 @@ class MusicAlbum < Item
     new(data['on_spotify'], data['published_date'], archived: data['archived'])
   end
 
-  private
-
   def can_be_archived?
     return true if on_spotify && super
 
