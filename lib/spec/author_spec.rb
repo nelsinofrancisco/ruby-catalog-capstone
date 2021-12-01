@@ -1,5 +1,5 @@
-require './lib/items/author.rb'
-require './item.rb'
+require './lib/items/author'
+require './item'
 
 describe Author do
   describe 'Testing the author class' do
