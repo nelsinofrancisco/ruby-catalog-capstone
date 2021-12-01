@@ -1,3 +1,5 @@
+require 'json'
+
 class Label
   attr_reader :id, :items
   attr_accessor :title, :color
@@ -12,5 +14,13 @@ class Label
   def add_item(item)
     @items << item
     item.add_label(self, false) unless item.label
+  end
+
+  def to_json(*_args)
+    JSON.dump({
+                title: @title,
+                color: @color,
+                items: @items
+              })
   end
 end

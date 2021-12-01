@@ -38,9 +38,13 @@ module AlbumLogic
   end
 
   def create_genre
+    item = select_item_for('Genre')
+
     print 'Name: '
     genre = gets.chomp
-    Genre.new(genre)
+    genre = Genre.new(genre)
+    item.add_genre(genre)
+    @genres.push(genre)
   end
 
   def check_empty(list, list_name, option)
