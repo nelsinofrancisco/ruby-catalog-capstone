@@ -1,4 +1,4 @@
-# rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength, Layout/LineLength
+# rubocop:disable Layout/LineLength, Metrics/ModuleLength
 require 'fileutils'
 require 'json'
 
@@ -156,4 +156,4 @@ module PreserveData
     end
   end
 end
-# rubocop:enable Metrics/CyclomaticComplexity, Metrics/MethodLength, Layout/LineLength
+# rubocop:enable Layout/LineLength, Metrics/ModuleLength
