@@ -60,7 +60,7 @@ module StorageHandler
       general_item + book_chr
     when 'Game'
       general_item = "[#{index}] - Class: #{item.class} Id: #{item.id}, Published at: #{item.published_date} "
-      game_chr = "Characteristics: #{item.multiplayer}, #{item.last_played_at}"
+      game_chr = "Characteristics: #{item.title} #{item.multiplayer}, #{item.last_played_at}"
       general_item + game_chr
     when 'MusicAlbum'
       general_item = "[#{index}] - Class: #{item.class} Id: #{item.id}, Published at: #{item.published_date} "
