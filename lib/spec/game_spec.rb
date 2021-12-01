@@ -1,4 +1,4 @@
-require_relative '../game.rb'
+require './lib/games/game.rb'
 
 describe Game do
   describe 'Testing the Game class' do

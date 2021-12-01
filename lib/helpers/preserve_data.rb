@@ -109,7 +109,6 @@ module PreserveData
     end
   end
 
-<<<<<<< HEAD
   def load_games
     games_data_path = './lib/helpers/json/games.json'
     unless File.exist?(games_data_path)
@@ -131,7 +130,9 @@ module PreserveData
     saved_authors_data.each do |author|
       new_author = Author.new(author['first_name'], author['last_name'])
       @authors_list.push(new_author)
-=======
+    end
+  end
+  
   def load_labels
     labels_path = './lib/helpers/json/labels.json'
     return [] unless File.exist?(labels_path)
@@ -155,7 +156,6 @@ module PreserveData
       item = @items[item_id]
       # This check is only needed because we can't work with games yet.
       relational_class.add_item(item) unless item.nil?
->>>>>>> 006c796cca363c0f26896110d0a7d2d07929d49e
     end
   end
 end
