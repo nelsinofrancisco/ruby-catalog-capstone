@@ -1,10 +1,7 @@
 require_relative 'book'
 require_relative './../items/label'
-require_relative './../helpers/variables_interface'
 
 module BookCollection
-  include VariablesInterface
-
   def list_all_books
     puts "Your library don't have books yet. Add one first!" if @books.empty?
 

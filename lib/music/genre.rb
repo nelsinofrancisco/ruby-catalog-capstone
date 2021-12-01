@@ -12,4 +12,15 @@ class Genre
     @items.push(item)
     item.add_genre(self)
   end
+
+  def to_json(*_args)
+    JSON.dump({
+                name: @name,
+                items: @items.map(&:item.to_json)
+              })
+  end
+
+  def self.from_json(data)
+    new(data['name'])
+  end
 end
