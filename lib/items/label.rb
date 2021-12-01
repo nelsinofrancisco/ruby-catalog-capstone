@@ -20,7 +20,7 @@ class Label
     JSON.dump ({
       title: @title,
       color: @color,
-      items: @items,
+      items: @items.map { |item| item.to_json},
     })
   end
 
