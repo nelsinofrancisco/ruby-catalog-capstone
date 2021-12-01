@@ -31,6 +31,7 @@ class Item
 
   def to_json
     JSON.dump ({
+      id: @id,
       archived: @archived,
       published_date: @published_date
     })
