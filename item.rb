@@ -20,9 +20,9 @@ class Item
     genre.items.push(self) unless genre.items.include?(self)
   end
 
-  def add_label(label, set_label_items_variable: true)
+  def add_label(label, validation: true)
     @label = label
-    label.add_item(self) if set_label_items_variable
+    label.add_item(self) if validation
   end
 
   def move_to_archive
