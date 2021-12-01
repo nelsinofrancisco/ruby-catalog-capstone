@@ -1,23 +1,16 @@
-# rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
-require_relative './lib/helpers/storage_handler'
 require_relative './lib/books/book_collection'
+# rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
 require_relative './lib/music/album_logic'
 require_relative './lib/games/games_module'
 
 class App
   attr_reader :albums, :genres, :books, :labels
 
-  include StorageHandler
   include GameLogic
   include AlbumLogic
   include BookCollection
-
   def initialize
-    instantiate_common_variables
-  end
-
-  def save_data
-    # save_books
+    instantiate_commom_variables
   end
 end
 
@@ -41,7 +34,6 @@ end
 
 def main
   app = App.new
-  app.load_collections
   option = nil
   app.read_games_data
   puts 'Welcome To Catalog Of My Things App'
@@ -75,9 +67,8 @@ def main
     when 11
       app.add_a_label
     when 12
-      app.create_genre
+      app.genres.push(app.create_genre)
     when 13
-      app.save_collections
       app.save_games_data
       puts "\nSaving and exiting..."
       break
