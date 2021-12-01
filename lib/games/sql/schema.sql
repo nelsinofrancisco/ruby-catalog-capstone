@@ -4,7 +4,9 @@ CREATE TABLE games (
   PRIMARY KEY (id),
   title varchar(30),
   multiplayer boolean,
-  last_played_at date
+  last_played_at date,
+  item_id int NOT NULL,
+  CONSTRAINT kf_items FOREIGN KEY(item_id) REFERENCES items(id) ON DELETE CASCADE,
 );
 
 CREATE TABLE authors (
@@ -23,8 +25,8 @@ CREATE TABLE items (
   label varchar(30),
   publish_date int,
   archived boolean,
-  authors_id int NOT NULL,
-  games_id int NOT NULL,
-  CONSTRAINT kf_authors FOREIGN KEY(authors_id) REFERENCES authors(id) ON DELETE CASCADE,
-  CONSTRAINT kf_games FOREIGN KEY(games_id) REFERENCES games(id) ON DELETE CASCADE
+  author_id int,
+  game_id int,
+  CONSTRAINT kf_authors FOREIGN KEY(author_id) REFERENCES authors(id) ON DELETE CASCADE,
+  CONSTRAINT kf_games FOREIGN KEY(game_id) REFERENCES games(id) ON DELETE CASCADE
 );
