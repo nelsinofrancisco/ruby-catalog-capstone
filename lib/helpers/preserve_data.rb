@@ -3,6 +3,8 @@ require 'json'
 
 module PreserveData
   def save_collections
+    base_folder = './lib/helpers/json'
+    FileUtils.mkdir_p(base_folder) unless Dir.exist?(base_folder)
     save_albums
     save_genres
   end
@@ -15,19 +17,13 @@ module PreserveData
   private
 
   def save_albums
-    base_folder = './lib/helpers/json'
     albums_path = './lib/helpers/json/albums.json'
-
-    FileUtils.mkdir_p(base_folder) unless Dir.exist?(base_folder)
     json_albums = @albums.map { |album| album.to_json }
     File.write(albums_path, JSON.generate(json_albums))
   end
 
   def save_genres
-    base_folder = './lib/helpers/json'
     genres_path = './lib/helpers/json/genres.json'
-
-    FileUtils.mkdir_p(base_folder) unless Dir.exist?(base_folder)
     json_genres = @genres.map { |genre| genre.to_json }
     File.write(genres_path, JSON.generate(json_genres))
   end
