@@ -38,8 +38,7 @@ class Item
   end
 
   def self.from_json(data)
-    state = JSON.parse data
-    new(state['published_date'], state['archived'])
+    new(data['published_date'], data['archived'])
   end
 
   private
