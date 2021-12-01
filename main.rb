@@ -39,6 +39,7 @@ def main
   app = App.new
   app.load_collections
   option = nil
+  app.read_games_data
   puts 'Welcome To Catalog Of My Things App'
 
   while option != '11'
@@ -73,6 +74,7 @@ def main
       app.create_genre
     when 13
       app.save_collections
+      app.save_games_data
       puts "\nSaving and exiting..."
       break
     else

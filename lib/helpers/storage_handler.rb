@@ -9,8 +9,8 @@ module StorageHandler
     @game_list = []
     @genres = []
     @labels = []
-    @authors = []
     @items = {}
+    @authors_list = []
   end
 
   private
