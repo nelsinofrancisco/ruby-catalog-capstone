@@ -30,11 +30,11 @@ class Item
   end
 
   def to_json(*_args)
-    JSON.dump({
-                id: @id,
-                archived: @archived,
-                published_date: @published_date
-              })
+    JSON.dump(
+      id: @id,
+      archived: @archived,
+      published_date: @published_date
+    )
   end
 
   def self.from_json(data)

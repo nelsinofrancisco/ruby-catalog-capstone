@@ -54,7 +54,7 @@ module PreserveData
   def save_games
     games_data_to_save = []
     @game_list.each do |game|
-      games_data_to_save.push({ title: game.title, multiplayer: game.multiplayer, last_played_at: game.last_played_at, published_date: game.published_date })
+      games_data_to_save.push(title: game.title, multiplayer: game.multiplayer, last_played_at: game.last_played_at, published_date: game.published_date)
     end
     File.open('./lib/helpers/json/games.json', 'w+') { |f| f.write(JSON.generate(games_data_to_save)) }
   end
@@ -62,7 +62,7 @@ module PreserveData
   def save_authors
     authors_data_to_save = []
     @authors_list.each do |author|
-      authors_data_to_save.push({ first_name: author.first_name, last_name: author.last_name })
+      authors_data_to_save.push(first_name: author.first_name, last_name: author.last_name)
     end
     File.open('./lib/helpers/json/authors.json', 'w+') { |f| f.write(JSON.generate(@authors_list)) }
   end
@@ -111,9 +111,7 @@ module PreserveData
 
   def load_games
     games_data_path = './lib/helpers/json/games.json'
-    unless File.exist?(games_data_path)
-      File.open(games_data_path, 'a') { |f| f.write(JSON.generate([])) }
-    end
+    File.open(games_data_path, 'a') { |f| f.write(JSON.generate([])) } unless File.exist?(games_data_path)
     saved_games_data = JSON.parse(File.read(games_data_path))
     saved_games_data.each do |game|
       new_game = Game.new(game['title'], game['multiplayer'], game['last_played_at'], game['published_date'])
@@ -123,16 +121,14 @@ module PreserveData
 
   def load_authors
     authors_data_path = './lib/helpers/json/authors.json'
-    unless File.exist?(authors_data_path)
-      File.open(authors_data_path, 'a') { |f| f.write(JSON.generate([])) }
-    end
+    File.open(authors_data_path, 'a') { |f| f.write(JSON.generate([])) } unless File.exist?(authors_data_path)
     saved_authors_data = JSON.parse(File.read(authors_data_path))
     saved_authors_data.each do |author|
       new_author = Author.new(author['first_name'], author['last_name'])
       @authors_list.push(new_author)
     end
   end
-  
+
   def load_labels
     labels_path = './lib/helpers/json/labels.json'
     return [] unless File.exist?(labels_path)

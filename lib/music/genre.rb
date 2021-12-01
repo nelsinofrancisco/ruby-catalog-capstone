@@ -14,10 +14,10 @@ class Genre
   end
 
   def to_json(*_args)
-    JSON.dump({
-                name: @name,
-                items: @items.map(&:to_json)
-              })
+    JSON.dump(
+      name: @name,
+      items: @items.map(&:to_json)
+    )
   end
 
   def self.from_json(data)
