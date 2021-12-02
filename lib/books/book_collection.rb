@@ -9,9 +9,7 @@ module BookCollection
     puts "Your library don't have books yet. Add one first!" if @books.empty?
 
     @books.each_with_index do |book, idx|
-      str = "[#{idx}] - "
-      str = str + "#{book.to_s}"
-      puts str
+      puts "[#{idx}] - #{book.to_s}"
     end
     puts
   end
