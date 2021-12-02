@@ -18,16 +18,16 @@ class MusicAlbum < Item
 
   def to_s
     str = "Id: #{id}, Published at: #{published_date},"
-    str = str + " On Spotify?: #{on_spotify}"
-    return str
+    str += " On Spotify?: #{on_spotify}"
+    str
   end
 
   def self.from_json(data)
     new(data['on_spotify'], data['published_date'], archived: data['archived'])
   end
 
-  private 
-  
+  private
+
   def can_be_archived?
     return true if on_spotify && super
 

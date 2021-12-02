@@ -3,9 +3,9 @@ require 'rspec'
 
 describe Book do
   before(:each) do
-    @book_8 = Book.new('2013-02-12', 'Orbit', 'Good', archived: false)
-    @book_2 = Book.new('2019-W05-6', 'Orbit', 'Bad', archived: false)
-    @book_10 = Book.new('20110212', 'Orbit', 'Good', archived: false)
+    @book8 = Book.new('2013-02-12', 'Orbit', 'Good', archived: false)
+    @book2 = Book.new('2019-W05-6', 'Orbit', 'Bad', archived: false)
+    @book10 = Book.new('20110212', 'Orbit', 'Good', archived: false)
     @book_wrong_date_format = Book.new('xxxx', 'Orbit', 'Good', archived: false)
   end
 
@@ -14,32 +14,32 @@ describe Book do
       expect(@book_wrong_date_format.published_date).to eq Date.today
     end
     it 'pub_date is correct => pub_date = Date.iso8601(pub_date)' do
-      book_10_date = '20110212'
-      book_2_date = '2019-W05-6'
-      book_8_date = '2013-02-12'
-      expect(@book_10.published_date).to eq Date.iso8601(book_10_date)
-      expect(@book_8.published_date).to eq Date.iso8601(book_8_date)
-      expect(@book_2.published_date).to eq Date.iso8601(book_2_date)
+      book10_date = '20110212'
+      book2_date = '2019-W05-6'
+      book8_date = '2013-02-12'
+      expect(@book10.published_date).to eq Date.iso8601(book10_date)
+      expect(@book8.published_date).to eq Date.iso8601(book8_date)
+      expect(@book2.published_date).to eq Date.iso8601(book2_date)
     end
   end
   context 'move_to_archive => true || false' do
     it "Book was published < 10 yrs ago and condition != 'bad'" do
       # when the book is < 10 yrs old and cover_state == good it can't be archived!
-      @book_8.move_to_archive
+      @book8.move_to_archive
 
-      expect(@book_8.archived).to eq false
+      expect(@book8.archived).to eq false
     end
     it "Book was published < 10 yrs ago and condition == 'bad'" do
       # when the book is < 10 yrs old and cover_state == bad it can be archived!
-      @book_2.move_to_archive
+      @book2.move_to_archive
 
-      expect(@book_2.archived).to eq true
+      expect(@book2.archived).to eq true
     end
-    it "Book was published >= 10 yrs ago" do
+    it 'Book was published >= 10 yrs ago' do
       # when the book is >= 10 yrs old it can be archived!
-      @book_10.move_to_archive
+      @book10.move_to_archive
 
-      expect(@book_10.archived).to eq true
+      expect(@book10.archived).to eq true
     end
   end
 end

@@ -10,7 +10,7 @@ module AlbumCollection
     return if check_empty(albums, 'Albums', '9')
 
     albums.each_with_index do |album, idx|
-      puts "[#{idx}] - #{album.to_s}"
+      puts "[#{idx}] - #{album}"
     end
     puts ''
   end
@@ -54,7 +54,7 @@ module AlbumCollection
     @genres.push(genre)
   end
 
-  private 
+  private
 
   def check_empty(list, list_name, option)
     puts "#{list_name} list is empty, try adding a new value by selecting number [#{option}]" if list.empty?

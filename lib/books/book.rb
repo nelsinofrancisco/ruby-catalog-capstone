@@ -25,8 +25,8 @@ class Book < Item
 
   def to_s
     str = "Id: #{id}, Published at: #{published_date},"
-    str = str + " Publisher: #{publisher}, Cover State: #{cover_state}"
-    return str
+    str += " Publisher: #{publisher}, Cover State: #{cover_state}"
+    str
   end
 
   private

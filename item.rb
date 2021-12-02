@@ -14,7 +14,7 @@ class Item
 
     begin
       @published_date = Date.iso8601(published_date)
-    rescue => exception
+    rescue StandardError
       @published_date = Date.today
     end
   end

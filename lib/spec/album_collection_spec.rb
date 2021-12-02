@@ -15,7 +15,7 @@ describe AlbumCollection do
       date = '2021'
 
       allow(@album_collection).to receive(:gets).and_return(on_spotify, date)
-      
+
       @album_collection.create_album
 
       expect(@album_collection.albums[0].published_date).to eq Date.today
@@ -23,28 +23,30 @@ describe AlbumCollection do
     end
     it 'create_album receives an incorrect value for on_spotify' do
       # Mocking the creation of a book with user input;
-      on_spotify_1 = 'Obviously this is incorrect'
-      on_spotify_2 = 'n'
+      on_spotify1 = 'Obviously this is incorrect'
+      on_spotify2 = 'n'
       date = '2021'
 
-      allow(@album_collection).to receive(:gets).and_return(on_spotify_1,on_spotify_2, date)
-      
-      expect(STDOUT).to receive(:puts).with('Wrong input! Please try type Y/y for yes or N/n for no:')
+      allow(@album_collection).to receive(:gets).and_return(on_spotify1, on_spotify2, date)
+
+      expect($stdout).to receive(:puts).with('Wrong input! Please try type Y/y for yes or N/n for no:')
       @album_collection.create_album
       expect(@album_collection.albums[0].published_date).to eq Date.today
       expect(@album_collection.albums[0].on_spotify).to eq false
     end
+  end
 
+  context 'create_album with multiple MusicAlbums => @albums.size > 1' do
     it 'create_album => @albums[0] & @albums[1] instance variables should equal input' do
       # Mocking the creation of a book with user input;
       on_spotify1 = 'y'
       date1 = '2021-W06-2'
-      
+
       on_spotify2 = 'n'
       date2 = '20200212'
 
       allow(@album_collection).to receive(:gets).and_return(on_spotify1, date1, on_spotify2, date2)
-      
+
       @album_collection.create_album
       @album_collection.create_album
 
@@ -66,34 +68,34 @@ describe AlbumCollection do
       date = '20211205'
 
       allow(@album_collection).to receive(:gets).and_return(on_spotify, date)
-      
+
       @album_collection.create_album
-      
+
       # Mock What the Function should output for each album
       @album_collection.albums.each_with_index do |album, idx|
-          expect(STDOUT).to receive(:puts).with("[#{idx}] - #{album.to_s}")
+        expect($stdout).to receive(:puts).with("[#{idx}] - #{album}")
       end
-      expect(STDOUT).to receive(:puts)
+      expect($stdout).to receive(:puts)
 
       @album_collection.list_all_albums
     end
     it 'list_all_albums with more than one album in the albums list => album.to_s' do
       on_spotify1 = 'y'
       date1 = '2021-W06-2'
-      
+
       on_spotify2 = 'n'
       date2 = '20200212'
 
       allow(@album_collection).to receive(:gets).and_return(on_spotify1, date1, on_spotify2, date2)
-      
+
       @album_collection.create_album
       @album_collection.create_album
 
       # Mock What the Function should output for each book
       @album_collection.albums.each_with_index do |book, idx|
-          expect(STDOUT).to receive(:puts).with("[#{idx}] - #{book.to_s}")
+        expect($stdout).to receive(:puts).with("[#{idx}] - #{book}")
       end
-      expect(STDOUT).to receive(:puts)
+      expect($stdout).to receive(:puts)
 
       @album_collection.list_all_albums
     end

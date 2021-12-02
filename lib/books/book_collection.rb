@@ -4,12 +4,12 @@ require_relative '../helpers/collection_handler'
 
 module BookCollection
   include CollectionHandler
-  
+
   def list_all_books
     return if check_empty(@books, 'Books', '1')
 
     @books.each_with_index do |book, idx|
-      puts "[#{idx}] - #{book.to_s}"
+      puts "[#{idx}] - #{book}"
     end
     puts
   end
