@@ -7,7 +7,6 @@ require_relative './lib/games/games_module'
 class App
   attr_reader :albums, :genres, :books, :labels
 
-  include StorageHandler
   include GameLogic
   include AlbumLogic
   include BookCollection
