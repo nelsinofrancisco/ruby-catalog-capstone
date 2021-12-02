@@ -1,44 +1,51 @@
 require './lib/books/book_collection'
+require 'rspec'
 
 describe BookCollection do
-  before(:all) do
-    @book_collection = BookCollection.new
-    @book_collection.load_collections
+  before(:each) do
+    @book_collection = Class.new
+    @book_collection.extend(BookCollection)
+    @book_collection.instantiate_common_variables
   end
 
-  describe 'Testing the author class' do
-    context 'When creating new author class' do
-      it 'Should create a new author when we call the class new method' do
-        new_author = Author.new('first name', 'Last name')
-        expect(new_author.first_name).to eq 'first name'
-        expect(new_author.last_name).to eq 'Last name'
+  describe 'add_a_book => asks user options to add a book' do
+    context 'Adding a book to the collection' do
+      it 'add_a_book => @books[0] instance variables should equal input' do
+        # Mocking the creation of a book with user input;
+        date = '2009'
+        name = 'Good Testing Book'
+        cover_state = 'Good'
+        
+        allow(@book_collection).to receive(:gets).and_return(date, name, cover_state)
+        
+        @book_collection.add_a_book
+
+        expect(@book_collection.books[0].published_date).to eq date
+        expect(@book_collection.books[0].publisher).to eq name.capitalize
+        expect(@book_collection.books[0].cover_state).to eq cover_state
       end
-    end
-  end
 
-  describe 'Testing the author class methods' do
-    context 'When an item adds the add_author method it should save the items in author class' do
-      it 'Should fill an array with items' do
-        item1 = Item.new(3)
-        new_author = Author.new('first name', 'Last name')
-        item1.add_author(new_author)
-        expect(new_author.items).to have_attributes(size: 1)
+      it 'add_a_book => @books[0] & @books[1] instance variables should equal input' do
+        # Mocking the creation of a book with user input;
+        date = '2009'
+        name = 'Good Testing Book'
+        cover_state = 'Good'
+        
+        date1 = '2010'
+        name1 = 'Bad Testing Book'
+        cover_state1 = 'Bad'
 
-        item2 = Item.new(10)
-        item2.add_author(new_author)
-        expect(new_author.items).to have_attributes(size: 2)
-      end
-    end
+        allow(@book_collection).to receive(:gets).and_return(date, name, cover_state, date1, name1, cover_state1)
+        
+        @book_collection.add_a_book
+        @book_collection.add_a_book
 
-    context "When an item it's in the array should not save it again" do
-      it 'Should cancel the method' do
-        item1 = Item.new(3)
-        new_author = Author.new('first name', 'Last name')
-        item1.add_author(new_author)
-        expect(new_author.items).to have_attributes(size: 1)
-
-        item1.add_author(new_author)
-        expect(new_author.items).to have_attributes(size: 1)
+        expect(@book_collection.books[0].published_date).to eq date
+        expect(@book_collection.books[0].publisher).to eq name.capitalize
+        expect(@book_collection.books[0].cover_state).to eq cover_state
+        expect(@book_collection.books[1].published_date).to eq date1
+        expect(@book_collection.books[1].publisher).to eq name1.capitalize
+        expect(@book_collection.books[1].cover_state).to eq cover_state1
       end
     end
   end
