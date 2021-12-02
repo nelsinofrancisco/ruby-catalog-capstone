@@ -10,6 +10,12 @@ class Game < Item
     @last_played_at = last_played_at
   end
 
+  def to_s
+    str = "Id: #{item.id}, Published at: #{item.published_date}, "
+    str += "Title: #{item.title}, IsMultiplayer?:  #{item.multiplayer}, Last Played At: #{item.last_played_at}"
+    str
+  end
+
   private
 
   def can_be_archived?
