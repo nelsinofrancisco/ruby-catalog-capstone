@@ -1,12 +1,9 @@
 # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
-require_relative './lib/helpers/storage_handler'
 require_relative './lib/books/book_collection'
 require_relative './lib/music/album_collection'
 require_relative './lib/games/game_collection'
 
 class App
-  attr_reader :albums, :genres, :books, :labels
-
   include GameCollection
   include AlbumCollection
   include BookCollection
