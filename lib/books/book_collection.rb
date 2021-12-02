@@ -60,11 +60,11 @@ module BookCollection
     end
   end
 
+  private
+
   def check_empty(list, list_name, option)
     puts "#{list_name} list is empty, try adding a new value by selecting number #{option}" if list.empty?
   end
-
-  private
 
   def select_label_from_list
     puts 'Select a Label from this option List: '
