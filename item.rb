@@ -19,14 +19,14 @@ class Item
     end
   end
 
-  def add_author(author)
+  def add_author(author validation: true)
     @author = author
-    author.add_item(self) unless author.items.include?(self)
+    author.add_item(self) if validation
   end
 
-  def add_genre(genre)
+  def add_genre(genre, validation: true)
     @genre = genre
-    genre.items.push(self) unless genre.items.include?(self)
+    genre.add_item(self) if validation
   end
 
   def add_label(label, validation: true)
