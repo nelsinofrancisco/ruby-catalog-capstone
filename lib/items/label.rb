@@ -24,6 +24,10 @@ class Label
     )
   end
 
+  def to_s
+    "Id: #{id}, Title: #{title}, Color: #{color}"
+  end
+
   def self.from_json(data)
     new(data['title'], data['color'])
   end

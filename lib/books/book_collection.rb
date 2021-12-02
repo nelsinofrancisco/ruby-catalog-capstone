@@ -69,10 +69,12 @@ module BookCollection
   def select_label_from_list
     puts 'Select a Label from this option List: '
     @labels.each_with_index do |label, idx|
-      puts "[#{idx}] - Title: #{label.title}, Author: #{label.color}"
+      puts "[#{idx}] - #{label}"
     end
+
     print 'Select your option: '
     option_id = gets.chomp.to_i
+    
     if option_id.abs >= @labels.length
       puts "Item could not be added to Label with Id: #{@labels[option_id].id}\n\n"
       return false
