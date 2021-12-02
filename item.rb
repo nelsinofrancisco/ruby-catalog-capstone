@@ -19,19 +19,19 @@ class Item
     end
   end
 
-  def add_author(author, validation: true)
+  def add_author(author)
     @author = author
-    author.add_item(self) if validation
+    author.add_item(self) unless author.items.include?(self)
   end
 
-  def add_genre(genre, validation: true)
+  def add_genre(genre)
     @genre = genre
-    genre.add_item(self) if validation
+    genre.add_item(self) unless genre.items.include?(self)
   end
 
-  def add_label(label, validation: true)
+  def add_label(label)
     @label = label
-    label.add_item(self) if validation
+    label.add_item(self) unless label.items.include?(self)
   end
 
   def move_to_archive

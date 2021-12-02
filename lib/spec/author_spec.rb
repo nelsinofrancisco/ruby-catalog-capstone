@@ -31,10 +31,11 @@ describe Author do
         item1 = Item.new(3)
         new_author = Author.new('first name', 'Last name')
         item1.add_author(new_author)
-        expect(new_author.items).to have_attributes(size: 1)
+        expect(new_author.items).to include item1
 
         item1.add_author(new_author)
-        expect(new_author.items).to have_attributes(size: 1)
+        puts new_author.items
+        expect(new_author.items.length).to eq 1
       end
     end
   end

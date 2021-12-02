@@ -10,7 +10,7 @@ class Genre
 
   def add_item(item)
     @items.push(item)
-    item.add_genre(self, validation: false) unless item.genre
+    item.add_genre(self) unless item.genre
   end
 
   def to_json(*_args)
