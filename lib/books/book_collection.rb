@@ -6,7 +6,7 @@ module BookCollection
   include CollectionHandler
   
   def list_all_books
-    puts "Your library don't have books yet. Add one first!" if @books.empty?
+    return if check_empty(@books, 'Books', '1')
 
     @books.each_with_index do |book, idx|
       puts "[#{idx}] - #{book.to_s}"
@@ -15,7 +15,7 @@ module BookCollection
   end
 
   def list_all_labels
-    puts "Your library don't have labels yet. Add one first!" if @books.empty?
+    return if check_empty(@books, 'Labels', '5')
 
     @labels.each do |label|
       puts "Id: #{label.id}, Title: #{label.title}, Author: #{label.color}"
@@ -58,6 +58,10 @@ module BookCollection
     else
       create_new_label(item)
     end
+  end
+
+  def check_empty(list, list_name, option)
+    puts "#{list_name} list is empty, try adding a new value by selecting number #{option}" if list.empty?
   end
 
   private
