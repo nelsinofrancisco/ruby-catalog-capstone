@@ -2,8 +2,10 @@
 require 'json'
 require_relative './game'
 require_relative '../items/author'
+require_relative '../helpers/collection_handler'
 
 module GameLogic
+  include CollectionHandler
   attr_accessor :game_list
 
   def add_game
