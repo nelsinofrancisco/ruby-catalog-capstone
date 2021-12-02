@@ -1,9 +1,9 @@
-require_relative '.././music/album_logic'
+require_relative '.././music/album_collection'
 require_relative '.././music/music_album'
 require 'json'
 
-describe AlbumLogic do
-  include AlbumLogic
+describe AlbumCollection do
+  include AlbumCollection
   context 'Test module methods' do
     it 'Should list albums' do
       albums = []
