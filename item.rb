@@ -53,6 +53,6 @@ class Item
   private
 
   def can_be_archived?
-    Date.today <= @published_date.next_year(10)
+    Date.today >= @published_date.next_year(10)
   end
 end
