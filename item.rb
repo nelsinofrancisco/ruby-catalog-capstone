@@ -1,3 +1,5 @@
+require 'date'
+
 class Item
   attr_reader :id, :archived, :author, :genre, :label, :published_date
 
@@ -11,7 +13,7 @@ class Item
     @published_date = nil
 
     begin
-      @published_date = Date.new(published_date)
+      @published_date = Date.iso8601(published_date)
     rescue => exception
       @published_date = Date.today
     end
