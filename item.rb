@@ -1,13 +1,20 @@
 class Item
   attr_reader :id, :archived, :author, :genre, :label, :published_date
 
+  # Date format = "yyyy-mm-dd" || "yyyymmdd"
   def initialize(published_date, archived: false)
     @id = Random.rand(1..1000)
     @archived = archived
     @author = nil
     @genre = nil
     @label = nil
-    @published_date = published_date
+    @published_date = nil
+
+    begin
+      @published_date = Date.new(published_date)
+    rescue => exception
+      @published_date = Date.today
+    end
   end
 
   def add_author(author)
@@ -44,6 +51,6 @@ class Item
   private
 
   def can_be_archived?
-    @published_date >= 10
+    Date.today <= @published_date.next_year(10)
   end
 end
