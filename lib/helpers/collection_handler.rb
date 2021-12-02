@@ -55,26 +55,13 @@ module CollectionHandler
   end
 
   def display_items_of_class(item, index)
-    case item.class.to_s
-    when 'Book'
-      general_item = "[#{index}] - Class: #{item.class} Id: #{item.id}, Published at: #{item.published_date} "
-      book_chr = "Characteristics: #{item.publisher}, #{item.cover_state}"
-      general_item + book_chr
-    when 'Game'
-      general_item = "[#{index}] - Class: #{item.class} Id: #{item.id}, Published at: #{item.published_date} "
-      game_chr = "Characteristics: #{item.title} #{item.multiplayer}, #{item.last_played_at}"
-      general_item + game_chr
-    when 'MusicAlbum'
-      general_item = "[#{index}] - Class: #{item.class} Id: #{item.id}, Published at: #{item.published_date} "
-      album_chr = "Characteristics: #{item.on_spotify}"
-      general_item + album_chr
-    end
+    "[#{index}] - #{item}"
   end
 
   def list_available_items
     available_options = {}
     available_options['books'] = @books unless @books.empty?
-    available_options['games'] = @game_list unless @game_list.empty?
+    available_options['games'] = @games unless @games.empty?
     available_options['albums'] = @albums unless @albums.empty?
 
     available_options

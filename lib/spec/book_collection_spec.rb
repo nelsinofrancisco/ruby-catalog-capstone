@@ -67,7 +67,7 @@ describe BookCollection do
     it 'list_all_books when there is no book in the collection' do
       expect do
         @book_collection.list_all_books
-      end.to output("Books list is empty, try adding a new value by selecting number 1\n\n").to_stdout
+      end.to output("Books list is empty, try adding a new value by selecting number 7\n\n").to_stdout
     end
     it 'list_all_books with only one book in the books list => book.to_s' do
       date = '2009-01-01'
