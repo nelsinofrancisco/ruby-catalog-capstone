@@ -19,7 +19,7 @@ class Item
     end
   end
 
-  def add_author(author validation: true)
+  def add_author(author, validation: true)
     @author = author
     author.add_item(self) if validation
   end
