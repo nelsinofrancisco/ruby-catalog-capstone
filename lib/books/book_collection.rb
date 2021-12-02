@@ -8,11 +8,10 @@ module BookCollection
   def list_all_books
     puts "Your library don't have books yet. Add one first!" if @books.empty?
 
-    @books.each do |book|
-      str1 = "Id: #{book.id} Published at: #{book.published_date}, Publisher: #{book.publisher} "
-      str2 = "Cover State: #{book.cover_state}"
-      result = str1 + str2
-      puts result
+    @books.each_with_index do |book, idx|
+      str = "[#{idx}] - "
+      str = str + "#{book.to_s}"
+      puts str
     end
     puts
   end
@@ -28,7 +27,7 @@ module BookCollection
 
   def add_a_book
     print 'Insert Published Date: '
-    date = gets.chomp.to_i
+    date = gets.chomp
     print 'Insert Publisher Name: '
     name = gets.chomp.capitalize
     print 'Insert Book cover_state: '
