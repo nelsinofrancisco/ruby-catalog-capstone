@@ -1,15 +1,11 @@
 # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
-require_relative './lib/helpers/storage_handler'
 require_relative './lib/books/book_collection'
-require_relative './lib/music/album_logic'
-require_relative './lib/games/games_module'
+require_relative './lib/music/album_collection'
+require_relative './lib/games/game_collection'
 
 class App
-  attr_reader :albums, :genres, :books, :labels
-
-  include StorageHandler
-  include GameLogic
-  include AlbumLogic
+  include GameCollection
+  include AlbumCollection
   include BookCollection
 
   def initialize
@@ -50,11 +46,11 @@ def main
     when 1
       app.list_all_books
     when 2
-      app.list_all_albums(app.albums) unless app.check_empty(app.albums, 'Albums', '9')
+      app.list_all_albums
     when 3
       app.list_all_games
     when 4
-      app.list_all_genres(app.genres) unless app.check_empty(app.genres, 'Genres', '11')
+      app.list_all_genres
     when 5
       app.list_all_labels
     when 6
@@ -64,7 +60,7 @@ def main
     when 8
       app.add_a_book
     when 9
-      app.albums.push(app.create_album)
+      app.create_album
     when 10
       app.add_game
     when 11

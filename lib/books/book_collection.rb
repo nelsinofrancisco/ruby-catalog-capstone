@@ -1,21 +1,21 @@
 require_relative 'book'
 require_relative './../items/label'
+require_relative '../helpers/collection_handler'
 
 module BookCollection
-  def list_all_books
-    puts "Your library don't have books yet. Add one first!" if @books.empty?
+  include CollectionHandler
 
-    @books.each do |book|
-      str1 = "Id: #{book.id} Published at: #{book.published_date}, Publisher: #{book.publisher} "
-      str2 = "Cover State: #{book.cover_state}"
-      result = str1 + str2
-      puts result
+  def list_all_books
+    return if check_empty(@books, 'Books', '1')
+
+    @books.each_with_index do |book, idx|
+      puts "[#{idx}] - #{book}"
     end
     puts
   end
 
   def list_all_labels
-    puts "Your library don't have labels yet. Add one first!" if @books.empty?
+    return if check_empty(@books, 'Labels', '5')
 
     @labels.each do |label|
       puts "Id: #{label.id}, Title: #{label.title}, Author: #{label.color}"
@@ -25,7 +25,7 @@ module BookCollection
 
   def add_a_book
     print 'Insert Published Date: '
-    date = gets.chomp.to_i
+    date = gets.chomp
     print 'Insert Publisher Name: '
     name = gets.chomp.capitalize
     print 'Insert Book cover_state: '
@@ -61,6 +61,10 @@ module BookCollection
   end
 
   private
+
+  def check_empty(list, list_name, option)
+    puts "#{list_name} list is empty, try adding a new value by selecting number #{option}" if list.empty?
+  end
 
   def select_label_from_list
     puts 'Select a Label from this option List: '

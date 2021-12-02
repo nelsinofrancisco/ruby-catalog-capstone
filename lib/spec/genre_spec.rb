@@ -2,7 +2,7 @@ require_relative '.././music/genre'
 require_relative '../../item'
 require 'json'
 
-describe MusicAlbum do
+describe Genre do
   context 'When testing creation of genre instance' do
     it 'Should create a genre when we call the class constructor' do
       new_genre = Genre.new('Test')

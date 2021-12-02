@@ -13,7 +13,7 @@ class Label
 
   def add_item(item)
     @items << item
-    item.add_label(self, validation: false) unless item.label
+    item.add_label(self) unless item.label
   end
 
   def to_json(*_args)

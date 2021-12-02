@@ -54,7 +54,7 @@ module PreserveData
 
   def save_games
     games_data_to_save = []
-    @game_list.each do |game|
+    @games.each do |game|
       games_data_to_save.push(title: game.title, multiplayer: game.multiplayer, last_played_at: game.last_played_at, published_date: game.published_date)
     end
     File.open('./lib/helpers/json/games.json', 'w+') { |f| f.write(JSON.generate(games_data_to_save)) }
@@ -62,10 +62,10 @@ module PreserveData
 
   def save_authors
     authors_data_to_save = []
-    @authors_list.each do |author|
+    @authors.each do |author|
       authors_data_to_save.push(first_name: author.first_name, last_name: author.last_name)
     end
-    File.open('./lib/helpers/json/authors.json', 'w+') { |f| f.write(JSON.generate(@authors_list)) }
+    File.open('./lib/helpers/json/authors.json', 'w+') { |f| f.write(JSON.generate(@authors)) }
   end
 
   def load_albums
@@ -116,7 +116,7 @@ module PreserveData
     saved_games_data = JSON.parse(File.read(games_data_path))
     saved_games_data.each do |game|
       new_game = Game.new(game['title'], game['multiplayer'], game['last_played_at'], game['published_date'])
-      @game_list.push(new_game)
+      @games.push(new_game)
     end
   end
 
@@ -126,7 +126,7 @@ module PreserveData
     saved_authors_data = JSON.parse(File.read(authors_data_path))
     saved_authors_data.each do |author|
       new_author = Author.new(author['first_name'], author['last_name'])
-      @authors_list.push(new_author)
+      @authors.push(new_author)
     end
   end
 
