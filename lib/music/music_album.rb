@@ -16,6 +16,12 @@ class MusicAlbum < Item
               })
   end
 
+  def to_s
+    str = "Id: #{id}, Published at: #{published_date},"
+    str = str + " On Spotify?: #{on_spotify}"
+    return str
+  end
+
   def self.from_json(data)
     new(data['on_spotify'], data['published_date'], archived: data['archived'])
   end
