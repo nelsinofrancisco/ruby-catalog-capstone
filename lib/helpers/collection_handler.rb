@@ -1,6 +1,6 @@
 require_relative './preserve_data'
 
-module StorageHandler
+module CollectionHandler
   include PreserveData
   # This method must be run in initialize method of the class that it's including it
   def instantiate_common_variables
