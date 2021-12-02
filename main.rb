@@ -46,11 +46,11 @@ def main
     when 1
       app.list_all_books
     when 2
-      app.list_all_albums(app.albums) unless app.check_empty(app.albums, 'Albums', '9')
+      app.list_all_albums
     when 3
       app.list_all_games
     when 4
-      app.list_all_genres(app.genres) unless app.check_empty(app.genres, 'Genres', '11')
+      app.list_all_genres
     when 5
       app.list_all_labels
     when 6
@@ -60,7 +60,7 @@ def main
     when 8
       app.add_a_book
     when 9
-      app.albums.push(app.create_album)
+      app.create_album
     when 10
       app.add_game
     when 11
