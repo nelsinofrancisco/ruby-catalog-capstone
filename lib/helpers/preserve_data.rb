@@ -6,21 +6,21 @@ module PreserveData
   def save_collections
     base_folder = './lib/helpers/json'
     FileUtils.mkdir_p(base_folder) unless Dir.exist?(base_folder)
+    save_books
     save_albums
+    save_games
+    save_labels
     save_genres
     save_authors
-    save_games
-    save_books
-    save_labels
   end
 
   def load_collections
-    load_albums
     load_books
+    load_albums
+    load_games
     load_labels
     load_genres
     load_authors
-    load_games
   end
 
   private
@@ -31,18 +31,25 @@ module PreserveData
     File.write(books_path, JSON.generate(json_books))
   end
 
-  def save_labels
-    labels_path = './lib/helpers/json/labels.json'
-
-    json_labels = @labels.map(&:to_json)
-    File.write(labels_path, JSON.generate(json_labels))
-  end
-
   def save_albums
     albums_path = './lib/helpers/json/albums.json'
 
     json_albums = @albums.map(&:to_json)
     File.write(albums_path, JSON.generate(json_albums))
+  end
+
+  def save_games
+    games_path = './lib/helpers/json/games.json'
+
+    json_games = @games.map(&:to_json)
+    File.write(games_path, JSON.generate(json_games))
+  end
+
+  def save_labels
+    labels_path = './lib/helpers/json/labels.json'
+
+    json_labels = @labels.map(&:to_json)
+    File.write(labels_path, JSON.generate(json_labels))
   end
 
   def save_genres
@@ -52,20 +59,11 @@ module PreserveData
     File.write(genres_path, JSON.generate(json_genres))
   end
 
-  def save_games
-    games_data_to_save = []
-    @games.each do |game|
-      games_data_to_save.push(title: game.title, multiplayer: game.multiplayer, last_played_at: game.last_played_at, published_date: game.published_date)
-    end
-    File.open('./lib/helpers/json/games.json', 'w+') { |f| f.write(JSON.generate(games_data_to_save)) }
-  end
-
   def save_authors
-    authors_data_to_save = []
-    @authors.each do |author|
-      authors_data_to_save.push(first_name: author.first_name, last_name: author.last_name)
-    end
-    File.open('./lib/helpers/json/authors.json', 'w+') { |f| f.write(JSON.generate(@authors)) }
+    authors_path = './lib/helpers/json/authors.json'
+   
+    json_authors = @authors.map(&:to_json)
+    File.write(authors_path, JSON.generate(json_authors))
   end
 
   def load_albums
@@ -98,6 +96,21 @@ module PreserveData
     end
   end
 
+  def load_games
+    games_path = './lib/helpers/json/games.json'
+    return [] unless File.exist?(games_path)
+
+    file = File.open(games_path)
+    file_data = file.read if file
+    games_data = JSON.parse(file_data)
+    games_data.each do |data|
+      json_data = JSON.parse(data)
+      item = Game.from_json(json_data)
+      @games << item
+      @items[json_data['id']] = item
+    end
+  end
+
   def load_genres
     genres_path = './lib/helpers/json/genres.json'
     return [] unless File.exist?(genres_path)
@@ -106,27 +119,27 @@ module PreserveData
     file_data = file.read if file
     genres_data = JSON.parse(file_data)
     genres_data.each do |data|
-      @genres.push(Genre.from_json(JSON.parse(data)))
-    end
-  end
-
-  def load_games
-    games_data_path = './lib/helpers/json/games.json'
-    File.open(games_data_path, 'a') { |f| f.write(JSON.generate([])) } unless File.exist?(games_data_path)
-    saved_games_data = JSON.parse(File.read(games_data_path))
-    saved_games_data.each do |game|
-      new_game = Game.new(game['title'], game['multiplayer'], game['last_played_at'], game['published_date'])
-      @games.push(new_game)
+      json_genre = JSON.parse(data)
+      item_array = json_genre['items']
+      new_genre = Genre.from_json(json_genre)
+      load_relations(new_genre, item_array)
+      @genres << new_genre
     end
   end
 
   def load_authors
-    authors_data_path = './lib/helpers/json/authors.json'
-    File.open(authors_data_path, 'a') { |f| f.write(JSON.generate([])) } unless File.exist?(authors_data_path)
-    saved_authors_data = JSON.parse(File.read(authors_data_path))
-    saved_authors_data.each do |author|
-      new_author = Author.new(author['first_name'], author['last_name'])
-      @authors.push(new_author)
+    authors_path = './lib/helpers/json/authors.json'
+    return [] unless File.exist?(authors_path)
+
+    file = File.open(authors_path)
+    file_data = file.read if file
+    authors_data = JSON.parse(file_data)
+    authors_data.each do |data|
+      json_author = JSON.parse(data)
+      item_array = json_author['items']
+      new_author = Author.from_json(json_author)
+      load_relations(new_author, item_array)
+      @authors << new_author
     end
   end
 

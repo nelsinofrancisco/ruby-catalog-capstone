@@ -11,9 +11,24 @@ class Game < Item
   end
 
   def to_s
-    str = "Id: #{item.id}, Published at: #{item.published_date}, "
-    str += "Title: #{item.title}, IsMultiplayer?:  #{item.multiplayer}, Last Played At: #{item.last_played_at}"
+    str = "Id: #{id}, Published at: #{published_date}, "
+    str += "Title: #{title}, IsMultiplayer?:  #{multiplayer}, Last Played At: #{last_played_at}"
     str
+  end
+
+  def to_json(*_args)
+    JSON.dump(
+      id: @id,
+      title: @title,
+      multiplayer: @multiplayer,
+      last_played_at: @last_played_at,
+      archived: @archived,
+      published_date: @published_date,
+    )
+  end
+
+  def self.from_json(data)
+    new(data['title'], data['multiplayer'], data['last_played_at'], data['published_date'])
   end
 
   private

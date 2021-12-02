@@ -7,7 +7,7 @@ module AlbumCollection
   include CollectionHandler
 
   def list_all_albums(albums: @albums)
-    return if check_empty(albums, 'Albums', '9')
+    return if check_empty(albums, 'Albums', '8')
 
     albums.each_with_index do |album, idx|
       puts "[#{idx}] - #{album}"

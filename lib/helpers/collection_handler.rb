@@ -61,7 +61,7 @@ module CollectionHandler
   def list_available_items
     available_options = {}
     available_options['books'] = @books unless @books.empty?
-    available_options['games'] = @game_list unless @game_list.empty?
+    available_options['games'] = @games unless @games.empty?
     available_options['albums'] = @albums unless @albums.empty?
 
     available_options

@@ -15,6 +15,18 @@ class Author
 
   def add_item(item)
     @items << item
-    item.add_author(self, validation: false) unless item.author
+    item.add_author(self) unless item.author
+  end
+
+  def to_json(*_args)
+    JSON.dump(
+      first_name: @first_name,
+      last_name: @last_name,
+      items: @items.map(&:to_json)
+    )
+  end
+
+  def self.from_json(data)
+    new(data['first_name'], data['last_name'])
   end
 end

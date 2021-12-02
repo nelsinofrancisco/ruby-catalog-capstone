@@ -6,7 +6,7 @@ module BookCollection
   include CollectionHandler
 
   def list_all_books
-    return if check_empty(@books, 'Books', '1')
+    return if check_empty(@books, 'Books', '7')
 
     @books.each_with_index do |book, idx|
       puts "[#{idx}] - #{book}"
@@ -15,7 +15,7 @@ module BookCollection
   end
 
   def list_all_labels
-    return if check_empty(@books, 'Labels', '5')
+    return if check_empty(@books, 'Labels', '10')
 
     @labels.each do |label|
       puts "Id: #{label.id}, Title: #{label.title}, Author: #{label.color}"

@@ -15,19 +15,19 @@ end
 
 def menu
   puts "Please choose an option by entering a number:\n\n"
-  puts '1 = List all books'
+  puts '1 - List all books'
   puts '2 - List all music albums'
   puts '3 - List all games'
-  puts '4 = list all genres'
+  puts '4 - list all genres'
   puts '5 - List all labels'
-  puts '6 = List all authors'
-  puts '7 = List all sources'
-  puts '8 = Add a book'
-  puts '9 = Add a music album'
-  puts '10 = Add a game'
-  puts '11 = Add a Label'
-  puts '12 - Add a Genre'
-  puts '13 = Exit'
+  puts '6 - List all authors'
+  puts '7 - Add a book'
+  puts '8 - Add a music album'
+  puts '9 - Add a game'
+  puts '10 - Add a Label'
+  puts '11 - Add a Genre'
+  puts '12 - Add a Author'
+  puts '13 - Exit'
   print 'Type your option: '
 end
 
@@ -37,7 +37,7 @@ def main
   option = nil
   puts 'Welcome To Catalog Of My Things App'
 
-  while option != '11'
+  while option != '13'
     menu
 
     option = gets.chomp.to_i
@@ -56,17 +56,17 @@ def main
     when 6
       app.list_all_authors
     when 7
-      puts 'Implement here your methsod'
-    when 8
       app.add_a_book
-    when 9
+    when 8
       app.create_album
-    when 10
+    when 9
       app.add_game
-    when 11
+    when 10
       app.add_a_label
-    when 12
+    when 11
       app.create_genre
+    when 12
+      app.add_a_author
     when 13
       app.save_collections
       puts "\nSaving and exiting..."
