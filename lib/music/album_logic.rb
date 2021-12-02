@@ -1,8 +1,11 @@
 require_relative './music_album'
 require_relative './genre'
 require_relative '.././../item'
+require_relative '../helpers/collection_handler'
 
 module AlbumLogic
+  include CollectionHandler
+
   def list_all_albums(albums)
     albums.each do |album|
       puts "ID: #{album.id}, On Spotify: #{album.on_spotify}"
