@@ -61,7 +61,7 @@ describe AlbumCollection do
     it 'list_all_albums when there is no album in the collection' do
       expect do
         @album_collection.list_all_albums
-      end.to output("Albums list is empty, try adding a new value by selecting number [9]\n\n").to_stdout
+      end.to output("Albums list is empty, try adding a new value by selecting number [8]\n\n").to_stdout
     end
     it 'list_all_albums with only one album in the albums list => album.to_s' do
       on_spotify = 'y'

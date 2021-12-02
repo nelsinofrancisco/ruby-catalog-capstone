@@ -1,4 +1,3 @@
-# rubocop:disable Layout/LineLength
 require 'json'
 require_relative './game'
 require_relative '../items/author'
@@ -25,6 +24,7 @@ module GameCollection
 
   def list_all_games
     return if check_empty(@games, 'Games', '9')
+
     @games.each_with_index do |game, idx|
       puts "[#{idx}] - #{game}"
     end
@@ -33,6 +33,7 @@ module GameCollection
 
   def list_all_authors
     return if check_empty(@authors, 'Authors', '12')
+
     @authors.each_with_index do |author, idx|
       puts "[#{idx}] - #{author}"
     end
@@ -63,7 +64,7 @@ module GameCollection
     end
   end
 
-  private 
+  private
 
   def select_author_from_list
     puts 'Select a Label from this option List: '
@@ -73,7 +74,7 @@ module GameCollection
 
     print 'Select your option: '
     option_id = gets.chomp.to_i
-    
+
     if option_id.abs >= @authors.length
       puts "Item could not be added to Author with Id: #{@authors[option_id].id}\n\n"
       return false
@@ -97,5 +98,3 @@ module GameCollection
     puts "Author created successfully\n\n"
   end
 end
-
-# rubocop:enable Layout/LineLength

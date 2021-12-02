@@ -23,7 +23,7 @@ class Game < Item
       multiplayer: @multiplayer,
       last_played_at: @last_played_at,
       archived: @archived,
-      published_date: @published_date,
+      published_date: @published_date
     )
   end
 

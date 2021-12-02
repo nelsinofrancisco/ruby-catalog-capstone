@@ -74,7 +74,7 @@ module BookCollection
 
     print 'Select your option: '
     option_id = gets.chomp.to_i
-    
+
     if option_id.abs >= @labels.length
       puts "Item could not be added to Label with Id: #{@labels[option_id].id}\n\n"
       return false

@@ -1,4 +1,4 @@
-# rubocop:disable Layout/LineLength, Metrics/ModuleLength
+# rubocop:disable Metrics/ModuleLength
 require 'fileutils'
 require 'json'
 
@@ -61,7 +61,7 @@ module PreserveData
 
   def save_authors
     authors_path = './lib/helpers/json/authors.json'
-   
+
     json_authors = @authors.map(&:to_json)
     File.write(authors_path, JSON.generate(json_authors))
   end
@@ -169,4 +169,4 @@ module PreserveData
     end
   end
 end
-# rubocop:enable Layout/LineLength, Metrics/ModuleLength
+# rubocop:enable Metrics/ModuleLength
