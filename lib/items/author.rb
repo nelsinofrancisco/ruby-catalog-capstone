@@ -9,6 +9,10 @@ class Author
     @items = []
   end
 
+  def to_s
+    "Id: #{id}, First Name: #{first_name}, Last Name: #{last_name}"
+  end
+
   def add_item(item)
     @items << item
     item.add_author(self, validation: false) unless item.author
