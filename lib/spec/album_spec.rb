@@ -14,10 +14,10 @@ describe MusicAlbum do
       new_album = MusicAlbum.new(true, 20)
       expect(new_album.can_be_archived?).to eq true
     end
-    # it 'Should parse album data' do
-    #   new_album = MusicAlbum.new(true, 10)
-    #   expect(new_album.to_json(new_album)).to eq '{"on_spotify":true,"published_date":10,"archived":false}'
-    # end
+    it 'Should parse album data' do
+      new_album = MusicAlbum.new(true, 10)
+      expect(new_album.to_json(new_album)).to eq '{"on_spotify":true,"published_date":10,"archived":false}'
+    end
     it 'Should create instance from json' do
       new_album = MusicAlbum.from_json(JSON.parse('{"on_spotify":false,"published_date":10,"archived":false}'))
       expect(new_album.on_spotify).to eq false
