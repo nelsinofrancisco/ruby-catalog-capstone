@@ -23,6 +23,12 @@ class Book < Item
     new(data['published_date'], data['publisher'], data['cover_state'], archived: data['archived'])
   end
 
+  def to_s
+    str = "Id: #{id}, Published at: #{published_date},"
+    str = str + " Publisher: #{publisher}, Cover State: #{cover_state}"
+    return str
+  end
+
   private
 
   def can_be_archived?
