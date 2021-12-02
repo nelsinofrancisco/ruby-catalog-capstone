@@ -20,6 +20,10 @@ class Genre
     )
   end
 
+  def to_s
+    "Id: #{id}, Name: #{name}"
+  end
+
   def self.from_json(data)
     new(data['name'])
   end
