@@ -6,14 +6,18 @@ require_relative '../helpers/collection_handler'
 module AlbumCollection
   include CollectionHandler
 
-  def list_all_albums(albums)
-    albums.each do |album|
-      puts "ID: #{album.id}, On Spotify: #{album.on_spotify}"
+  def list_all_albums(albums: @albums)
+    return if check_empty(albums, 'Albums', '9')
+
+    albums.each_with_index do |album, idx|
+      puts "[#{idx}] - #{album.to_s}"
     end
     puts ''
   end
 
-  def list_all_genres(genres)
+  def list_all_genres(genres: @genres)
+    # return if check_empty(genres, 'Genres', '11')
+
     genres.each do |genre|
       puts "ID: #{genre.id}, Genre: #{genre.name}"
     end
@@ -37,7 +41,7 @@ module AlbumCollection
     end
     print 'Published Date: '
     published_date = gets.chomp
-    MusicAlbum.new(on_spotify, published_date)
+    @albums << MusicAlbum.new(on_spotify, published_date)
   end
 
   def create_genre
@@ -50,7 +54,9 @@ module AlbumCollection
     @genres.push(genre)
   end
 
+  private 
+
   def check_empty(list, list_name, option)
-    puts "#{list_name} list is empty, try adding a new value by selecting number #{option}" if list.empty?
+    puts "#{list_name} list is empty, try adding a new value by selecting number [#{option}]" if list.empty?
   end
 end
