@@ -12,7 +12,7 @@ class Item
 
   def add_author(author)
     @author = author
-    author.add_item(self)
+    author.add_item(self) unless author.items.include?(self)
   end
 
   def add_genre(genre)
@@ -30,11 +30,11 @@ class Item
   end
 
   def to_json(*_args)
-    JSON.dump({
-                id: @id,
-                archived: @archived,
-                published_date: @published_date
-              })
+    JSON.dump(
+      id: @id,
+      archived: @archived,
+      published_date: @published_date
+    )
   end
 
   def self.from_json(data)

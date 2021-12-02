@@ -17,11 +17,11 @@ class Label
   end
 
   def to_json(*_args)
-    JSON.dump({
-                title: @title,
-                color: @color,
-                items: @items.map(&:to_json)
-              })
+    JSON.dump(
+      title: @title,
+      color: @color,
+      items: @items.map(&:to_json)
+    )
   end
 
   def self.from_json(data)

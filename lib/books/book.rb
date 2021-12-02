@@ -10,13 +10,13 @@ class Book < Item
   end
 
   def to_json(*_args)
-    JSON.dump({
-                id: @id,
-                archived: @archived,
-                published_date: @published_date,
-                publisher: @publisher,
-                cover_state: @cover_state
-              })
+    JSON.dump(
+      id: @id,
+      archived: @archived,
+      published_date: @published_date,
+      publisher: @publisher,
+      cover_state: @cover_state
+    )
   end
 
   def self.from_json(data)

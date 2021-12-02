@@ -40,44 +40,6 @@ module GameLogic
       end
     end
   end
-
-  def read_games_data
-    unless File.exist?('./lib/games/json/games.json')
-      File.open('./lib/games/json/games.json', 'a') { |f| f.write(JSON.generate([])) }
-    end
-
-    unless File.exist?('./lib/games/json/authors.json')
-      File.open('./lib/games/json/authors.json', 'a') { |f| f.write(JSON.generate([])) }
-    end
-
-    saved_games_data = JSON.parse(File.read('./lib/games/json/games.json'))
-    saved_authors_data = JSON.parse(File.read('./lib/games/json/authors.json'))
-
-    saved_games_data.each do |game|
-      new_game = Game.new(game['title'], game['multiplayer'], game['last_played_at'], game['published_date'])
-      @game_list.push(new_game)
-    end
-
-    saved_authors_data.each do |author|
-      new_author = Author.new(author['first_name'], author['last_name'])
-      @authors_list.push(new_author)
-    end
-  end
-
-  def save_games_data
-    games_data_to_save = []
-    @game_list.each do |game|
-      games_data_to_save.push({ title: game.title, multiplayer: game.multiplayer, last_played_at: game.last_played_at, published_date: game.published_date })
-    end
-
-    authors_data_to_save = []
-    @authors_list.each do |author|
-      authors_data_to_save.push({ first_name: author.first_name, last_name: author.last_name })
-    end
-
-    File.open('./lib/games/json/games.json', 'w+') { |f| f.write(JSON.generate(games_data_to_save)) }
-    File.open('./lib/games/json/authors.json', 'w+') { |f| f.write(JSON.generate(@authors_list)) }
-  end
 end
 
 # rubocop:enable Layout/LineLength
