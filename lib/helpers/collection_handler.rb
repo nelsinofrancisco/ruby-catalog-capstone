@@ -2,15 +2,17 @@ require_relative './preserve_data'
 
 module CollectionHandler
   include PreserveData
+  attr_reader :albums, :genres, :books, :labels, :items
+
   # This method must be run in initialize method of the class that it's including it
   def instantiate_common_variables
     @albums = []
     @books = []
-    @game_list = []
+    @games = []
     @genres = []
     @labels = []
     @items = {}
-    @authors_list = []
+    @authors = []
   end
 
   private
