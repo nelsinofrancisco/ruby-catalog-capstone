@@ -21,6 +21,10 @@ Currently List of Actions that the app performs:
 - 13 - Exit
 
 
+## UML Diagram
+
+![UML-Diagram](https://raw.githubusercontent.com/microverseinc/curriculum-ruby/main/group-capstone/images/catalog_of_my_things.png?token=AUNWCNGIKF5HWEGHFNG4IGTBWNP5W)
+
 ## Built With
 
 - Ruby
