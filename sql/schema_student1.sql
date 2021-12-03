@@ -5,14 +5,14 @@ CREATE TABLE book (
   item_id int,
   CONSTRAINT fk_item FOREIGN KEY(item_id) REFERENCES items(id) ON DELETE CASCADE,
   PRIMARY KEY (id)
-)
+);
 
 CREATE TABLE label (
   id int GENERATED ALWAYS AS IDENTITY NOT NULL,
   title varchar(50) NOT NULL,
   color varchard(50) NOT NULL,
-  PRIMARY Key(id),
-)
+  PRIMARY KEY(id)
+);
 
 CREATE TABLE items (
   id int GENERATED ALWAYS AS IDENTITY(MINVALUE 0 START WITH 0 CACHE 20) NOT NULL,
