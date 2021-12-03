@@ -65,13 +65,13 @@ To get a local copy up and running follow these simple example steps.
 - Twitter: [@nelsino_s](https://twitter.com/nelsino_s)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/nelsinofrancisco/)
 
-👩‍💻**Juan Felipe Gomez**
+👨‍💻**Juan Felipe Gomez**
 
 - GitHub: [@Felipeg005](https://github.com/Felipeg005)
 - Twitter: [@JuanFGT05](https://twitter.com/JuanFGT05)
 - LinkedIn: [Juan Felipe Gomez Tobon](https://www.linkedin.com/in/juan-felipe-gomez-tobon/)
 
-👩‍💻**Mateo Villagómez**
+👨‍💻**Mateo Villagómez**
 
 - GitHub: [@mateo951](https://github.com/mateo951)
 - Twitter: [@MVGameDev](https://twitter.com/MVGameDev)
