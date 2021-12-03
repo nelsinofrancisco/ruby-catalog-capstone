@@ -1,5 +1,9 @@
 ![microverse-logo](https://img.shields.io/badge/Microverse-blueviolet)
 
+# Video Presentation
+
+[Please follow this link to see our presentation](https://drive.google.com/file/d/1pRR1bIjGQqgW-JDCfbBDkCnZIJBC88B0/view?usp=sharing)
+
 # Ruby Catalog of my Things
 
 Catalog of my Things is a CLI app that records things that you own! You can choose between Books, MusicAlbums and Games as things you can record! You can add relations for a thing, currently you can set a relation with Author, Label and Genre, you can check what those relations look like in the UML diagram in this readme.
